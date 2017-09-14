@@ -22,13 +22,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.plans = @[@"Tiger 20", @"Tiger 14", @"Tiger 10", @"Tiger 5", @"Orange", @"Gold", @"Silver", @"Bronze", @"Brown"];
+    self.plans = @[@"Tiger 20 - $325", @"Tiger 14 - $525", @"Tiger 10 - $725", @"Tiger 5 - $1325", @"Orange - $2762", @"Gold - $1400", @"Silver - $1000", @"Bronze - $550", @"Brown - $2000"];
     self.prices = @[@325, @525, @725, @1325, @2762, @1400, @1000, @550, @2000];
     
     self.picker.delegate = self;
     self.picker.dataSource = self;
     
     
+    // Do any additional setup after loading the view, typically from a nib.
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [self setupDates];
+    double percent = (double)self.currentDays / (double)self.totalDays;
+    
+    
+    int planValue = [self.prices[[self.picker selectedRowInComponent:0]] intValue];
+    
+    self.dollarsLabel.text = [[NSString alloc] initWithFormat:@"Should have spent: $%.02f\nShould have left: $%.02f", planValue * percent, planValue - planValue * percent];
+}
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Utility
+-(void)setupDates{
     NSString *start = @"2017-08-27";
     NSString *semesterEnd = @"2017-12-19";
     
@@ -40,30 +61,21 @@
     
     NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     NSDateComponents *currentComponents = [gregorianCalendar components:NSCalendarUnitDay
-                                                        fromDate:startDate
-                                                          toDate:endDate
-                                                         options:0];
-    NSDateComponents *totalComponents = [gregorianCalendar components:NSCalendarUnitDay
                                                                fromDate:startDate
-                                                                 toDate:semesterEndDate
+                                                                 toDate:endDate
                                                                 options:0];
+    NSDateComponents *totalComponents = [gregorianCalendar components:NSCalendarUnitDay
+                                                             fromDate:startDate
+                                                               toDate:semesterEndDate
+                                                              options:0];
     
     
     self.totalDays = [totalComponents day];
     self.currentDays = [currentComponents day];
-    
-    double percent = (double)self.currentDays / (double)self.totalDays;
-    int planValue = [self.prices[0] intValue];
-    
-    self.dollarsLabel.text = [[NSString alloc] initWithFormat:@"Should have spent: $%.02f\nShould have left: $%.02f", planValue * percent, planValue - planValue * percent];
-    // Do any additional setup after loading the view, typically from a nib.
 }
 
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+#pragma mark - Picker View
 
 // The number of columns of data
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
