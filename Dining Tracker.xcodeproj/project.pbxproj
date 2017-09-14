@@ -210,6 +210,7 @@
 				TargetAttributes = {
 					FAD028B71F68400600CA0122 = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = S4JEZRL8YY;
 						ProvisioningStyle = Automatic;
 					};
 					FAD028D31F68400600CA0122 = {
@@ -430,6 +431,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = S4JEZRL8YY;
 				INFOPLIST_FILE = "Dining Tracker/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "alextaffe.Dining-Tracker";
@@ -441,6 +443,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = S4JEZRL8YY;
 				INFOPLIST_FILE = "Dining Tracker/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "alextaffe.Dining-Tracker";
@@ -513,6 +516,7 @@
 				FAD028EA1F68400600CA0122 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FAD028EB1F68400600CA0122 /* Build configuration list for PBXNativeTarget "Dining TrackerTests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +525,7 @@
 				FAD028ED1F68400600CA0122 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FAD028EE1F68400600CA0122 /* Build configuration list for PBXNativeTarget "Dining TrackerUITests" */ = {
 			isa = XCConfigurationList;
@@ -529,6 +534,7 @@
 				FAD028F01F68400600CA0122 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

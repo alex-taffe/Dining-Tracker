@@ -1,14 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -16,8 +20,42 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fao-VI-AdI">
+                                <rect key="frame" x="0.0" y="91" width="375" height="216"/>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RIT Dining Dollars Tracker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Onn-Hv-JyD">
+                                <rect key="frame" x="88" y="44" width="198" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="198" id="TJ6-3A-4Iz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ido-Of-J4H">
+                                <rect key="frame" x="166" y="362" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Onn-Hv-JyD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="737-Kb-Q8g"/>
+                            <constraint firstItem="Ido-Of-J4H" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="86t-zP-o8w"/>
+                            <constraint firstItem="fao-VI-AdI" firstAttribute="top" secondItem="Onn-Hv-JyD" secondAttribute="bottom" constant="26" id="MtP-tt-vYE"/>
+                            <constraint firstAttribute="trailing" secondItem="fao-VI-AdI" secondAttribute="trailing" id="TKC-CM-ydl"/>
+                            <constraint firstItem="Onn-Hv-JyD" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="24" id="TmV-Qe-GPf"/>
+                            <constraint firstItem="Ido-Of-J4H" firstAttribute="top" secondItem="fao-VI-AdI" secondAttribute="bottom" constant="55" id="bct-Hu-HKf"/>
+                            <constraint firstItem="fao-VI-AdI" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="gl0-GT-ct8"/>
+                            <constraint firstItem="fao-VI-AdI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="hn8-hB-0a1"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="dollarsLabel" destination="Ido-Of-J4H" id="v1v-ct-fXE"/>
+                        <outlet property="picker" destination="fao-VI-AdI" id="qH7-AS-Sg2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
