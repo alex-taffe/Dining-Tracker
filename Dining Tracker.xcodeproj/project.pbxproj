@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6CE5A96F37465CF090425C80 /* Pods_Dining_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EBD5402DA6ED34533EE8CC0 /* Pods_Dining_Tracker.framework */; };
 		FAD028BD1F68400600CA0122 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD028BC1F68400600CA0122 /* main.m */; };
 		FAD028C01F68400600CA0122 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD028BF1F68400600CA0122 /* AppDelegate.m */; };
 		FAD028C31F68400600CA0122 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD028C21F68400600CA0122 /* ViewController.m */; };
@@ -36,6 +37,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1B15DC5B172FDB56BAF68B3F /* Pods-Dining Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dining Tracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-Dining Tracker/Pods-Dining Tracker.release.xcconfig"; sourceTree = "<group>"; };
+		5EBD5402DA6ED34533EE8CC0 /* Pods_Dining_Tracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dining_Tracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D76E1C9B9345271A2B4FBE57 /* Pods-Dining Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dining Tracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Dining Tracker/Pods-Dining Tracker.debug.xcconfig"; sourceTree = "<group>"; };
 		FAD028B81F68400600CA0122 /* Dining Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dining Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAD028BC1F68400600CA0122 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FAD028BE1F68400600CA0122 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -60,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CE5A96F37465CF090425C80 /* Pods_Dining_Tracker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +85,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3FA42E6E6CDB43E16D5CD832 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D76E1C9B9345271A2B4FBE57 /* Pods-Dining Tracker.debug.xcconfig */,
+				1B15DC5B172FDB56BAF68B3F /* Pods-Dining Tracker.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7AB0818AADB8B4DF3FA6F020 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5EBD5402DA6ED34533EE8CC0 /* Pods_Dining_Tracker.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FAD028AF1F68400600CA0122 = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +109,8 @@
 				FAD028D71F68400600CA0122 /* Dining TrackerTests */,
 				FAD028E21F68400600CA0122 /* Dining TrackerUITests */,
 				FAD028B91F68400600CA0122 /* Products */,
+				3FA42E6E6CDB43E16D5CD832 /* Pods */,
+				7AB0818AADB8B4DF3FA6F020 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -150,9 +174,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FAD028E81F68400600CA0122 /* Build configuration list for PBXNativeTarget "Dining Tracker" */;
 			buildPhases = (
+				7F9EEDB72B84A36D27F23AE1 /* [CP] Check Pods Manifest.lock */,
 				FAD028B41F68400600CA0122 /* Sources */,
 				FAD028B51F68400600CA0122 /* Frameworks */,
 				FAD028B61F68400600CA0122 /* Resources */,
+				FA12E40E1F6B27D900B54A21 /* ShellScript */,
+				EDA8484A7A9DBA0AF1C27C6C /* [CP] Embed Pods Frameworks */,
+				F7B34533F0B6E44B59D1320E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -271,6 +299,70 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7F9EEDB72B84A36D27F23AE1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Dining Tracker-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EDA8484A7A9DBA0AF1C27C6C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Dining Tracker/Pods-Dining Tracker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F7B34533F0B6E44B59D1320E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Dining Tracker/Pods-Dining Tracker-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FA12E40E1F6B27D900B54A21 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 09764c9c947a0afd71b1d427183f41486221c2a2 a78d4f8861d10735422add3b5538b00e7dda087cede77ffa2a6b0f4c58abd55d\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FAD028B41F68400600CA0122 /* Sources */ = {
@@ -441,6 +533,7 @@
 		};
 		FAD028E91F68400600CA0122 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D76E1C9B9345271A2B4FBE57 /* Pods-Dining Tracker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -456,6 +549,7 @@
 		};
 		FAD028EA1F68400600CA0122 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1B15DC5B172FDB56BAF68B3F /* Pods-Dining Tracker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
