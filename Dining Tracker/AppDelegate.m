@@ -20,6 +20,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    //use and crash metric tracking
     [Fabric with:@[[Crashlytics class]]];
 
     return YES;
