@@ -7,8 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import <Fabric/Fabric.h>
-#import <Crashlytics/Crashlytics.h>
+@import Fabric;
+@import Crashlytics;
 
 
 @interface AppDelegate ()
