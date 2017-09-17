@@ -8,3 +8,7 @@ Create a pull request and I will approve if the code is bug free and well writte
 
 ## I found a bug and/or want a new feature.
 Open a new issue on the issues tab
+
+
+## The app won't compile for me
+Make sure you are using at least Xcode version 8.0. Also, after cloning the repository, cd to the directory and run `pod install`
