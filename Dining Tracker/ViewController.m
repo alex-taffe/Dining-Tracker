@@ -164,6 +164,35 @@
     double overSpent = shouldHaveSpent - totalSpent; //how much they have overspent by
     long daysRemaining = self.totalDays - self.currentDays; //how many days left in the semester
     
+    
+    //make sure that the value is not negative
+    if(valueLeft < 0){
+        //reset all values
+        valueLeft = 0;
+        totalSpent = planValue;
+        overSpent = shouldHaveSpent - totalSpent;
+        self.moneyLeftField.text = @"$0.00";
+        //alert the user
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"You can not have a negative dining balance" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:action];
+        [self presentViewController:alert animated:true completion:nil];
+    }
+    
+    //make sure the user hasn't entered a value that is too high
+    if(valueLeft > planValue){
+        //reset all values
+        valueLeft = planValue;
+        totalSpent = 0;
+        overSpent = shouldHaveSpent - totalSpent;
+        self.moneyLeftField.text = [[NSString alloc] initWithFormat:@"$%0.2f", (double)planValue];
+        //alert the user
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"You can not have a value that exceeds your dining plan. Change your plan or reduce the amount." preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:action];
+        [self presentViewController:alert animated:true completion:nil];
+    }
+    
     //update the label for the plan label but chop off the value
     self.planLabel.text = [self.plans[self.currentPlanSelected] componentsSeparatedByString:@" - "][0];
     
@@ -272,12 +301,34 @@
 //called every time the user tries to edit the value remaining
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSString *newText = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    // allow backspace
+    if (!string.length && textField.text.length > 1)
+        return true;
+
+    //characters allowed
+    NSCharacterSet *numbersSet = [NSCharacterSet characterSetWithCharactersInString:@"$0123456789."];
+    //actual characters
+    NSCharacterSet *characterSetFromTextField = [NSCharacterSet characterSetWithCharactersInString:textField.text];
+    
+    //only let allowed characters occur
+    if(![numbersSet isSupersetOfSet:characterSetFromTextField])
+        return false;
+    
+    //make sure there is only 1 dollar sign
+    if([[textField.text componentsSeparatedByString:@"$"] count] - 1 > 1)
+        return false;
+    
+    //make sure there is only one decimal sign
+    if([[textField.text componentsSeparatedByString:@"."] count] - 1 > 0 && [string isEqualToString:@"."])
+        return false;
+    
     // Make sure that the currency symbol is always at the beginning of the string:
     if (![newText hasPrefix:[[NSLocale currentLocale] objectForKey:NSLocaleCurrencySymbol]])
         return false;
     //Make sure we are only allowing two decimals
     if([newText containsString:@"."] && [[newText componentsSeparatedByString:@"."][1] length] > 2)
         return false;
+    
     // Default:
     return true;
 }
