@@ -27,6 +27,7 @@
 
 //other UI
 @property (strong, nonatomic) CZPickerView *picker;
+@property (strong, nonatomic) UIView *statusBar;
 //static data
 @property (strong, nonatomic) NSArray<NSString *> *plans;
 @property (strong, nonatomic) NSArray<NSNumber *> *prices;
@@ -76,8 +77,8 @@
     [self.picker setSelectedRows:@[[NSNumber numberWithInt:self.currentPlanSelected]]]; //recover the currently selected plan
     
     //This just makes the status bar white so that it doesn't look awful when scrolling
-    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
-    statusBar.backgroundColor = UIColor.whiteColor;
+    self.statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    self.statusBar.backgroundColor = UIColor.whiteColor;
     
     
     //add some style to the edit button
@@ -214,6 +215,22 @@
     [self updateLabels];
 }
 
+
+//caled when the picker is about to display
+-(void)czpickerViewWillDisplay:(CZPickerView *)pickerView{
+    //change the status bar background color to clear to avoid visual glitches with blurring
+    [UIView animateWithDuration:0.0 animations:^{
+        self.statusBar.backgroundColor = UIColor.clearColor;
+    }];
+}
+
+//called when the picker is about to disappear
+-(void)czpickerViewWillDismiss:(CZPickerView *)pickerView{
+    //change the status bar back to white
+    [UIView animateWithDuration:1.7 animations:^{
+        self.statusBar.backgroundColor = UIColor.whiteColor;
+    }];
+}
 
 //Check to make sure the user didnt just deselect a plan
 //if they did, restore the previous value
