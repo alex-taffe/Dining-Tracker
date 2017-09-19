@@ -89,6 +89,16 @@
     //set the money left delegate
     self.moneyLeftField.delegate = self;
     
+    //add a toolbar to the keyboard
+    UIToolbar* inputToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
+    inputToolbar.barStyle = UIBarStyleDefault;
+    inputToolbar.items = [NSArray arrayWithObjects:
+                           [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+                           [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(dismissKeyboard)],
+                           nil];
+    [inputToolbar sizeToFit];
+    self.moneyLeftField.inputAccessoryView = inputToolbar;
+    
     //add a gesture to make tapping outside the keyboard dismiss it
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
