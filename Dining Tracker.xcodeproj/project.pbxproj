@@ -16,6 +16,7 @@
 		FAC48B1C1F7178FD003462EB /* NotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC48B1B1F7178FD003462EB /* NotificationController.m */; };
 		FAC48B1E1F7178FD003462EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAC48B1D1F7178FD003462EB /* Assets.xcassets */; };
 		FAC48B231F7178FD003462EB /* Dining Tracker Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = FAC48B031F7178FD003462EB /* Dining Tracker Watch.app */; };
+		FAC48B2F1F717A1E003462EB /* DiningTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC48B2E1F717A1E003462EB /* DiningTracker.m */; };
 		FAD028BD1F68400600CA0122 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD028BC1F68400600CA0122 /* main.m */; };
 		FAD028C01F68400600CA0122 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD028BF1F68400600CA0122 /* AppDelegate.m */; };
 		FAD028C31F68400600CA0122 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD028C21F68400600CA0122 /* ViewController.m */; };
@@ -101,6 +102,8 @@
 		FAC48B1D1F7178FD003462EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAC48B1F1F7178FD003462EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAC48B201F7178FD003462EB /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		FAC48B2D1F717A1E003462EB /* DiningTracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiningTracker.h; sourceTree = "<group>"; };
+		FAC48B2E1F717A1E003462EB /* DiningTracker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiningTracker.m; sourceTree = "<group>"; };
 		FAD028B81F68400600CA0122 /* Dining Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dining Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAD028BC1F68400600CA0122 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FAD028BE1F68400600CA0122 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -196,9 +199,19 @@
 			path = "Dining Tracker Watch Extension";
 			sourceTree = "<group>";
 		};
+		FAC48B2C1F7179F1003462EB /* Dining Tracker Shared */ = {
+			isa = PBXGroup;
+			children = (
+				FAC48B2D1F717A1E003462EB /* DiningTracker.h */,
+				FAC48B2E1F717A1E003462EB /* DiningTracker.m */,
+			);
+			path = "Dining Tracker Shared";
+			sourceTree = "<group>";
+		};
 		FAD028AF1F68400600CA0122 = {
 			isa = PBXGroup;
 			children = (
+				FAC48B2C1F7179F1003462EB /* Dining Tracker Shared */,
 				FAD028BA1F68400600CA0122 /* Dining Tracker */,
 				FAD028D71F68400600CA0122 /* Dining TrackerTests */,
 				FAD028E21F68400600CA0122 /* Dining TrackerUITests */,
@@ -547,6 +560,7 @@
 			files = (
 				FAD028C31F68400600CA0122 /* ViewController.m in Sources */,
 				FAD028C01F68400600CA0122 /* AppDelegate.m in Sources */,
+				FAC48B2F1F717A1E003462EB /* DiningTracker.m in Sources */,
 				FAD028BD1F68400600CA0122 /* main.m in Sources */,
 				FAD028C91F68400600CA0122 /* Dining_Tracker.xcdatamodeld in Sources */,
 			);
