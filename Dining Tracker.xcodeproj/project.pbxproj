@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		6CE5A96F37465CF090425C80 /* Pods_Dining_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EBD5402DA6ED34533EE8CC0 /* Pods_Dining_Tracker.framework */; };
+		FAC48B071F7178FD003462EB /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAC48B051F7178FD003462EB /* Interface.storyboard */; };
+		FAC48B091F7178FD003462EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAC48B081F7178FD003462EB /* Assets.xcassets */; };
+		FAC48B101F7178FD003462EB /* Dining Tracker Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FAC48B0F1F7178FD003462EB /* Dining Tracker Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		FAC48B161F7178FD003462EB /* InterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC48B151F7178FD003462EB /* InterfaceController.m */; };
+		FAC48B191F7178FD003462EB /* ExtensionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC48B181F7178FD003462EB /* ExtensionDelegate.m */; };
+		FAC48B1C1F7178FD003462EB /* NotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC48B1B1F7178FD003462EB /* NotificationController.m */; };
+		FAC48B1E1F7178FD003462EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAC48B1D1F7178FD003462EB /* Assets.xcassets */; };
+		FAC48B231F7178FD003462EB /* Dining Tracker Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = FAC48B031F7178FD003462EB /* Dining Tracker Watch.app */; };
 		FAD028BD1F68400600CA0122 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD028BC1F68400600CA0122 /* main.m */; };
 		FAD028C01F68400600CA0122 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD028BF1F68400600CA0122 /* AppDelegate.m */; };
 		FAD028C31F68400600CA0122 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD028C21F68400600CA0122 /* ViewController.m */; };
@@ -20,6 +28,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		FAC48B111F7178FD003462EB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAD028B01F68400600CA0122 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FAC48B0E1F7178FD003462EB;
+			remoteInfo = "Dining Tracker Watch Extension";
+		};
+		FAC48B211F7178FD003462EB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAD028B01F68400600CA0122 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FAC48B021F7178FD003462EB;
+			remoteInfo = "Dining Tracker Watch";
+		};
 		FAD028D51F68400600CA0122 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FAD028B01F68400600CA0122 /* Project object */;
@@ -36,10 +58,49 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		FAC48B271F7178FD003462EB /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				FAC48B101F7178FD003462EB /* Dining Tracker Watch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAC48B2B1F7178FD003462EB /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				FAC48B231F7178FD003462EB /* Dining Tracker Watch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		1B15DC5B172FDB56BAF68B3F /* Pods-Dining Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dining Tracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-Dining Tracker/Pods-Dining Tracker.release.xcconfig"; sourceTree = "<group>"; };
 		5EBD5402DA6ED34533EE8CC0 /* Pods_Dining_Tracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dining_Tracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D76E1C9B9345271A2B4FBE57 /* Pods-Dining Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dining Tracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Dining Tracker/Pods-Dining Tracker.debug.xcconfig"; sourceTree = "<group>"; };
+		FAC48B031F7178FD003462EB /* Dining Tracker Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dining Tracker Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAC48B061F7178FD003462EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		FAC48B081F7178FD003462EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FAC48B0A1F7178FD003462EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAC48B0F1F7178FD003462EB /* Dining Tracker Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Dining Tracker Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAC48B141F7178FD003462EB /* InterfaceController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InterfaceController.h; sourceTree = "<group>"; };
+		FAC48B151F7178FD003462EB /* InterfaceController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InterfaceController.m; sourceTree = "<group>"; };
+		FAC48B171F7178FD003462EB /* ExtensionDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExtensionDelegate.h; sourceTree = "<group>"; };
+		FAC48B181F7178FD003462EB /* ExtensionDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExtensionDelegate.m; sourceTree = "<group>"; };
+		FAC48B1A1F7178FD003462EB /* NotificationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationController.h; sourceTree = "<group>"; };
+		FAC48B1B1F7178FD003462EB /* NotificationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationController.m; sourceTree = "<group>"; };
+		FAC48B1D1F7178FD003462EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FAC48B1F1F7178FD003462EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAC48B201F7178FD003462EB /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		FAD028B81F68400600CA0122 /* Dining Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dining Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAD028BC1F68400600CA0122 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FAD028BE1F68400600CA0122 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -60,6 +121,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		FAC48B0C1F7178FD003462EB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FAD028B51F68400600CA0122 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -102,12 +170,40 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FAC48B041F7178FD003462EB /* Dining Tracker Watch */ = {
+			isa = PBXGroup;
+			children = (
+				FAC48B051F7178FD003462EB /* Interface.storyboard */,
+				FAC48B081F7178FD003462EB /* Assets.xcassets */,
+				FAC48B0A1F7178FD003462EB /* Info.plist */,
+			);
+			path = "Dining Tracker Watch";
+			sourceTree = "<group>";
+		};
+		FAC48B131F7178FD003462EB /* Dining Tracker Watch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				FAC48B141F7178FD003462EB /* InterfaceController.h */,
+				FAC48B151F7178FD003462EB /* InterfaceController.m */,
+				FAC48B171F7178FD003462EB /* ExtensionDelegate.h */,
+				FAC48B181F7178FD003462EB /* ExtensionDelegate.m */,
+				FAC48B1A1F7178FD003462EB /* NotificationController.h */,
+				FAC48B1B1F7178FD003462EB /* NotificationController.m */,
+				FAC48B1D1F7178FD003462EB /* Assets.xcassets */,
+				FAC48B1F1F7178FD003462EB /* Info.plist */,
+				FAC48B201F7178FD003462EB /* PushNotificationPayload.apns */,
+			);
+			path = "Dining Tracker Watch Extension";
+			sourceTree = "<group>";
+		};
 		FAD028AF1F68400600CA0122 = {
 			isa = PBXGroup;
 			children = (
 				FAD028BA1F68400600CA0122 /* Dining Tracker */,
 				FAD028D71F68400600CA0122 /* Dining TrackerTests */,
 				FAD028E21F68400600CA0122 /* Dining TrackerUITests */,
+				FAC48B041F7178FD003462EB /* Dining Tracker Watch */,
+				FAC48B131F7178FD003462EB /* Dining Tracker Watch Extension */,
 				FAD028B91F68400600CA0122 /* Products */,
 				3FA42E6E6CDB43E16D5CD832 /* Pods */,
 				7AB0818AADB8B4DF3FA6F020 /* Frameworks */,
@@ -120,6 +216,8 @@
 				FAD028B81F68400600CA0122 /* Dining Tracker.app */,
 				FAD028D41F68400600CA0122 /* Dining TrackerTests.xctest */,
 				FAD028DF1F68400600CA0122 /* Dining TrackerUITests.xctest */,
+				FAC48B031F7178FD003462EB /* Dining Tracker Watch.app */,
+				FAC48B0F1F7178FD003462EB /* Dining Tracker Watch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -170,6 +268,40 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		FAC48B021F7178FD003462EB /* Dining Tracker Watch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAC48B281F7178FD003462EB /* Build configuration list for PBXNativeTarget "Dining Tracker Watch" */;
+			buildPhases = (
+				FAC48B011F7178FD003462EB /* Resources */,
+				FAC48B271F7178FD003462EB /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FAC48B121F7178FD003462EB /* PBXTargetDependency */,
+			);
+			name = "Dining Tracker Watch";
+			productName = "Dining Tracker Watch";
+			productReference = FAC48B031F7178FD003462EB /* Dining Tracker Watch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		FAC48B0E1F7178FD003462EB /* Dining Tracker Watch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAC48B241F7178FD003462EB /* Build configuration list for PBXNativeTarget "Dining Tracker Watch Extension" */;
+			buildPhases = (
+				FAC48B0B1F7178FD003462EB /* Sources */,
+				FAC48B0C1F7178FD003462EB /* Frameworks */,
+				FAC48B0D1F7178FD003462EB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Dining Tracker Watch Extension";
+			productName = "Dining Tracker Watch Extension";
+			productReference = FAC48B0F1F7178FD003462EB /* Dining Tracker Watch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 		FAD028B71F68400600CA0122 /* Dining Tracker */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FAD028E81F68400600CA0122 /* Build configuration list for PBXNativeTarget "Dining Tracker" */;
@@ -181,10 +313,12 @@
 				FA12E40E1F6B27D900B54A21 /* ShellScript */,
 				EDA8484A7A9DBA0AF1C27C6C /* [CP] Embed Pods Frameworks */,
 				F7B34533F0B6E44B59D1320E /* [CP] Copy Pods Resources */,
+				FAC48B2B1F7178FD003462EB /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				FAC48B221F7178FD003462EB /* PBXTargetDependency */,
 			);
 			name = "Dining Tracker";
 			productName = "Dining Tracker";
@@ -236,6 +370,14 @@
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Alex Taffe";
 				TargetAttributes = {
+					FAC48B021F7178FD003462EB = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+					};
+					FAC48B0E1F7178FD003462EB = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+					};
 					FAD028B71F68400600CA0122 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = S4JEZRL8YY;
@@ -269,11 +411,30 @@
 				FAD028B71F68400600CA0122 /* Dining Tracker */,
 				FAD028D31F68400600CA0122 /* Dining TrackerTests */,
 				FAD028DE1F68400600CA0122 /* Dining TrackerUITests */,
+				FAC48B021F7178FD003462EB /* Dining Tracker Watch */,
+				FAC48B0E1F7178FD003462EB /* Dining Tracker Watch Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		FAC48B011F7178FD003462EB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAC48B091F7178FD003462EB /* Assets.xcassets in Resources */,
+				FAC48B071F7178FD003462EB /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAC48B0D1F7178FD003462EB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAC48B1E1F7178FD003462EB /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FAD028B61F68400600CA0122 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -370,6 +531,16 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		FAC48B0B1F7178FD003462EB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAC48B191F7178FD003462EB /* ExtensionDelegate.m in Sources */,
+				FAC48B161F7178FD003462EB /* InterfaceController.m in Sources */,
+				FAC48B1C1F7178FD003462EB /* NotificationController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FAD028B41F68400600CA0122 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -400,6 +571,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		FAC48B121F7178FD003462EB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FAC48B0E1F7178FD003462EB /* Dining Tracker Watch Extension */;
+			targetProxy = FAC48B111F7178FD003462EB /* PBXContainerItemProxy */;
+		};
+		FAC48B221F7178FD003462EB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FAC48B021F7178FD003462EB /* Dining Tracker Watch */;
+			targetProxy = FAC48B211F7178FD003462EB /* PBXContainerItemProxy */;
+		};
 		FAD028D61F68400600CA0122 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = FAD028B71F68400600CA0122 /* Dining Tracker */;
@@ -413,6 +594,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		FAC48B051F7178FD003462EB /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FAC48B061F7178FD003462EB /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
 		FAD028C41F68400600CA0122 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -432,6 +621,84 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		FAC48B251F7178FD003462EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "Dining Tracker Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "alextaffe.Dining-Tracker.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+			};
+			name = Debug;
+		};
+		FAC48B261F7178FD003462EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "Dining Tracker Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "alextaffe.Dining-Tracker.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+			};
+			name = Release;
+		};
+		FAC48B291F7178FD003462EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = S4JEZRL8YY;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				IBSC_MODULE = Dining_Tracker_Watch_Extension;
+				INFOPLIST_FILE = "Dining Tracker Watch/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "alextaffe.Dining-Tracker.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+			};
+			name = Debug;
+		};
+		FAC48B2A1F7178FD003462EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = S4JEZRL8YY;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				IBSC_MODULE = Dining_Tracker_Watch_Extension;
+				INFOPLIST_FILE = "Dining Tracker Watch/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "alextaffe.Dining-Tracker.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+			};
+			name = Release;
+		};
 		FAD028E61F68400600CA0122 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -618,6 +885,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		FAC48B241F7178FD003462EB /* Build configuration list for PBXNativeTarget "Dining Tracker Watch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAC48B251F7178FD003462EB /* Debug */,
+				FAC48B261F7178FD003462EB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FAC48B281F7178FD003462EB /* Build configuration list for PBXNativeTarget "Dining Tracker Watch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAC48B291F7178FD003462EB /* Debug */,
+				FAC48B2A1F7178FD003462EB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		FAD028B31F68400600CA0122 /* Build configuration list for PBXProject "Dining Tracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
