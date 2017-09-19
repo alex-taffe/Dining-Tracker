@@ -17,6 +17,7 @@
 		FAC48B1E1F7178FD003462EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAC48B1D1F7178FD003462EB /* Assets.xcassets */; };
 		FAC48B231F7178FD003462EB /* Dining Tracker Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = FAC48B031F7178FD003462EB /* Dining Tracker Watch.app */; };
 		FAC48B2F1F717A1E003462EB /* DiningTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC48B2E1F717A1E003462EB /* DiningTracker.m */; };
+		FAC48B301F717A2D003462EB /* DiningTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC48B2E1F717A1E003462EB /* DiningTracker.m */; };
 		FAD028BD1F68400600CA0122 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD028BC1F68400600CA0122 /* main.m */; };
 		FAD028C01F68400600CA0122 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD028BF1F68400600CA0122 /* AppDelegate.m */; };
 		FAD028C31F68400600CA0122 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD028C21F68400600CA0122 /* ViewController.m */; };
@@ -551,6 +552,7 @@
 				FAC48B191F7178FD003462EB /* ExtensionDelegate.m in Sources */,
 				FAC48B161F7178FD003462EB /* InterfaceController.m in Sources */,
 				FAC48B1C1F7178FD003462EB /* NotificationController.m in Sources */,
+				FAC48B301F717A2D003462EB /* DiningTracker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

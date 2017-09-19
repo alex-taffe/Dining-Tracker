@@ -8,6 +8,10 @@
 
 #import "DiningTracker.h"
 
+@interface DiningTracker()
+
+@end
+
 @implementation DiningTracker
 
 @end
