@@ -1,3 +1,5 @@
+## This branch should not be merged into master
+
 # Dining-Tracker
 This app is designed to help track RIT dining balances to avoid students over/underspending. This app is NOT affiliated with RIT.
 
