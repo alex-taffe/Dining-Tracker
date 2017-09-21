@@ -24,7 +24,10 @@ typedef NS_ENUM(NSUInteger, MealPlanOption) {
 @interface DiningTracker : NSObject
 
 +(MealPlanOption)getMealPlanFromIndex:(int)index;
++(NSString *)getTitleForMealPlan:(MealPlanOption)plan;
 +(int)indexOfMealPlan:(MealPlanOption)plan;
+
+@property (class, nonatomic, assign, readonly) NSArray<NSString *> *MealPlans;
 
 -(instancetype)initWithSemesterBeginDate:(NSDate *)semesterBeginDate endDate:(NSDate *)endDate;
 -(void)updateDates;
@@ -32,12 +35,15 @@ typedef NS_ENUM(NSUInteger, MealPlanOption) {
 @property (nonatomic, readonly, getter=semesterPercent) double semesterPercent;
 @property (nonatomic, readonly, getter=daysRemaining) long daysRemaining;
 
-@property (nonatomic) MealPlanOption currentMealPlan;
-@property (nonatomic) double diningBalance;
+@property (nonatomic, getter=getCurrentMealPlan, setter=setCurrentMealPlan:) MealPlanOption currentMealPlan;
+@property (nonatomic, getter=getCurrentDiningBalance, setter=setCurrentDiningBalance:) double diningBalance;
 @property (nonatomic, readonly, getter=mealPlanValue) double mealPlanValue;
 @property (nonatomic, readonly, getter=totalSpent) double totalSpent;
 @property (nonatomic, readonly, getter=shouldHaveSpent) double shouldHaveSpent;
+@property (nonatomic, readonly, getter=shouldHaveLeft) double shouldHaveLeft;
 @property (nonatomic, readonly, getter=planProgressValue) double planProgressValue;
 @property (nonatomic, readonly, getter=overSpent) double overSpent;
+@property (nonatomic, readonly, getter=leftPerDay) double leftPerDay;
+@property (nonatomic, readonly, getter=planPerDay) double planPerDay;
 
 @end

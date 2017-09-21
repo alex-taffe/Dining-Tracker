@@ -31,7 +31,6 @@
 @property (strong, nonatomic) UIView *statusBar;
 //static data
 @property (strong, nonatomic) DiningTracker *tracker;
-@property (nonatomic, strong) NSUserDefaults *preferences;
 //instance data
 @property (nonatomic) BOOL hasDisplayedPickerOnce;
 @end
@@ -42,7 +41,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     //setup our instance data that is going to be give or take static
-    self.preferences = [NSUserDefaults standardUserDefaults];
     
     //start and end of the semester
     NSString *start = @"2017-08-27";
@@ -58,19 +56,8 @@
     
     self.tracker = [[DiningTracker alloc] initWithSemesterBeginDate:startDate endDate:semesterEndDate];
     
-    //make sure the plan variable exists and if not, set it
-    if([self.preferences objectForKey:@"plan"] == nil)
-        [self.preferences setInteger:0 forKey:@"plan"];
-    
-    //recover the currently selected plan
-    self.tracker.currentMealPlan = [DiningTracker getMealPlanFromIndex:(int)[self.preferences integerForKey:@"plan"]];
-    
-    //make sure the value variable exists and if not, set it
-    if([self.preferences objectForKey:@"value"] == nil)
-        [self.preferences setDouble:self.tracker.mealPlanValue forKey:@"value"];
-    
     //recover the previous money left value
-    self.moneyLeftField.text = [[NSString alloc] initWithFormat:@"$%0.2f", [self.preferences doubleForKey:@"value"]];
+    self.moneyLeftField.text = [[NSString alloc] initWithFormat:@"$%0.2f", self.tracker.diningBalance];
     
     
     //initialize the meal plan picker
@@ -153,38 +140,40 @@
     //make sure the user hasn't entered a value that is too high
     if(self.tracker.diningBalance > self.tracker.mealPlanValue){
         //reset all values
-        self.moneyLeftField.text = [[NSString alloc] initWithFormat:@"$%0.2f", self.tracker.mealPlanValue];
+        self.moneyLeftField.text = [[NSString alloc] initWithFormat:@"$%0.2f", 2 * self.tracker.mealPlanValue];
         //alert the user
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"You can not have a value that exceeds your dining plan. Change your plan or reduce the amount." preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"You can not have a value that exceeds twice your dining plan. Change your plan or reduce the amount." preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *action = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:action];
         [self presentViewController:alert animated:true completion:nil];
     }
     
     //update the label for the plan label but chop off the value
-    self.planLabel.text = [self.plans[self.currentPlanSelected] componentsSeparatedByString:@" - "][0];
+    self.planLabel.text = [DiningTracker getTitleForMealPlan:self.tracker.currentMealPlan];
     
     //update our circle graphs
-    [self.yearProgress setProgress:percent animated:true];
-    [self.planProgress setProgress:(CGFloat)planProgressValue animated:true];
+    [self.yearProgress setProgress:self.tracker.semesterPercent animated:true];
+    [self.planProgress setProgress:self.tracker.planProgressValue animated:true];
 
-    
-    self.totalSpentLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", totalSpent]; //update total spent
-    self.shouldHaveSpentLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", shouldHaveSpent]; //should have spent
-    self.shouldHaveLeftLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", planValue - shouldHaveSpent]; //should have left
+    if(self.tracker.totalSpent < 0)
+        self.totalSpentLabel.text = [[NSString alloc] initWithFormat:@"$0.00"]; //update total spent
+    else
+        self.totalSpentLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", self.tracker.totalSpent ]; //update total spent
+    self.shouldHaveSpentLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", self.tracker.shouldHaveSpent]; //should have spent
+    self.shouldHaveLeftLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", self.tracker.shouldHaveLeft]; //should have left
     
     //check to see if the user has over or under spent and set accordingly
-    if(overSpent > 0){
+    if(self.tracker.overSpent > 0){
         self.overSpentTitleLabel.text = @"Underspent by:";
-        self.overSpentLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", overSpent];
+        self.overSpentLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", self.tracker.overSpent];
     }
     else{
         self.overSpentTitleLabel.text = @"Overspent by:";
-        self.overSpentLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", -overSpent];
+        self.overSpentLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", -self.tracker.overSpent];
     }
     
-    self.leftPerDayLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", (double)valueLeft / (double)daysRemaining]; //how much they actually have left per day
-    self.planPerDayLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", (double)planValue / (double)self.totalDays]; // how much the plan says to spend per day
+    self.leftPerDayLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", self.tracker.leftPerDay]; //how much they actually have left per day
+    self.planPerDayLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", self.tracker.planPerDay]; // how much the plan says to spend per day
 }
 
 
@@ -192,12 +181,12 @@
 
 // The number of plans the user can pick from
 - (NSInteger)numberOfRowsInPickerView:(CZPickerView *)pickerView{
-    return self.plans.count;
+    return DiningTracker.MealPlans.count;
 }
 
 // return the plan string for each individual row
 - (NSString *)czpickerView:(CZPickerView *)pickerView titleForRow:(NSInteger)row{
-    return self.plans[row];
+    return DiningTracker.MealPlans[row];
 }
 
 //called when a user has made a seleciton
@@ -205,8 +194,8 @@
     NSLog(@"Picked");
     
     //update current plan and store on the disk
-    self.currentPlanSelected = (int)row;
-    [self.preferences setInteger:(int)row forKey:@"plan"];
+    self.tracker.currentMealPlan = [DiningTracker getMealPlanFromIndex:(int)row];
+    
     
     //update our UI
     [self updateLabels];
@@ -234,14 +223,14 @@
 - (void)czpickerViewDidDismiss:(CZPickerView *)pickerView{
     if(pickerView.selectedRows.count == 0){
         NSLog(@"Morons, you have to keep something selected. Reverting");
-        [self.picker setSelectedRows:@[[NSNumber numberWithInt:self.currentPlanSelected]]];
+        [self.picker setSelectedRows:@[[NSNumber numberWithInt:[DiningTracker indexOfMealPlan:self.tracker.currentMealPlan]]]];
     }
 }
 #pragma mark - Text field
 //called when return is pressed on the keyboard (not currently used)
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     //update stored value on disk
-    [self.preferences setDouble:[[textField.text stringByReplacingOccurrencesOfString:@"$" withString:@""] doubleValue] forKey:@"value"]; //we have to remove the $ to get a clean double
+    self.tracker.diningBalance = [[textField.text stringByReplacingOccurrencesOfString:@"$" withString:@""] doubleValue]; //we have to remove the $ to get a clean double
     //hide the keyboard
     [textField resignFirstResponder];
     //update our UI
@@ -253,7 +242,7 @@
 -(void)dismissKeyboard
 {
     //update stored value on disk
-    [self.preferences setDouble:[[self.moneyLeftField.text stringByReplacingOccurrencesOfString:@"$" withString:@""] doubleValue] forKey:@"value"]; //we have to remove the $ to get a clean double
+    self.tracker.diningBalance = [[self.moneyLeftField.text stringByReplacingOccurrencesOfString:@"$" withString:@""] doubleValue]; //we have to remove the $ to get a clean double
     //hide the keyboard
     [self.moneyLeftField resignFirstResponder];
     //update our UI
