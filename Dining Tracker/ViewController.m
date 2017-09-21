@@ -45,7 +45,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     //setup our instance data that is going to be give or take static
-    self.plans = @[@"Tiger 20 - $325", @"Tiger 14 - $525", @"Tiger 10 - $725", @"Tiger 5 - $1325", @"Orange - $2762", @"Gold - $1400", @"Silver - $1000", @"Bronze - $550", @"Brown - $2000"];
+    self.plans = @[@"Tiger 20 - $325", @"Tiger 14 - $525", @"Tiger 10 - $725", @"Tiger 5 - $1325", @"Orange - $2762", @"Gold - $1400", @"Silver - $1000", @"Bronze - $550", @"Brown - $2000", @"Custom"];
     self.prices = @[@325, @525, @725, @1325, @2762, @1400, @1000, @550, @2000];
     self.preferences = [NSUserDefaults standardUserDefaults];
     
