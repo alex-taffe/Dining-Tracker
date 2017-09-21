@@ -30,7 +30,7 @@
 @property (strong, nonatomic) UIView *statusBar;
 //static data
 @property (strong, nonatomic) NSArray<NSString *> *plans;
-@property (strong, nonatomic) NSArray<NSNumber *> *prices;
+@property (strong, nonatomic) NSMutableArray<NSNumber *> *prices;
 @property (nonatomic, strong) NSUserDefaults *preferences;
 //instance data
 @property (nonatomic) long totalDays;
@@ -46,7 +46,7 @@
     // Do any additional setup after loading the view, typically from a nib.
     //setup our instance data that is going to be give or take static
     self.plans = @[@"Tiger 20 - $325", @"Tiger 14 - $525", @"Tiger 10 - $725", @"Tiger 5 - $1325", @"Orange - $2762", @"Gold - $1400", @"Silver - $1000", @"Bronze - $550", @"Brown - $2000", @"Custom"];
-    self.prices = @[@325, @525, @725, @1325, @2762, @1400, @1000, @550, @2000];
+    self.prices = [[NSMutableArray alloc] initWithObjects: @325, @525, @725, @1325, @2762, @1400, @1000, @550, @2000, @1000, nil];
     self.preferences = [NSUserDefaults standardUserDefaults];
     
     //make sure the plan variable exists and if not, set it
@@ -205,6 +205,8 @@
     
     //update the label for the plan label but chop off the value
     self.planLabel.text = [self.plans[self.currentPlanSelected] componentsSeparatedByString:@" - "][0];
+    if(self.currentPlanSelected == 9)
+        self.planLabel.text = [[NSString alloc] initWithFormat:@"%@ - $%@", self.planLabel.text, self.prices[9]];
     
     //update our circle graphs
     [self.yearProgress setProgress:percent animated:true];
@@ -269,6 +271,21 @@
     [UIView animateWithDuration:1.7 animations:^{
         self.statusBar.backgroundColor = UIColor.whiteColor;
     }];
+    if([(NSNumber *)pickerView.selectedRows[0] intValue] == 9){
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Custom Meal Plan" message:@"Please enter the value of your meal plan" preferredStyle:UIAlertControllerStyleAlert];
+        [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+            textField.placeholder = @"$";
+            textField.keyboardType = UIKeyboardTypeDecimalPad;
+        }];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            NSArray *textfields = alert.textFields;
+            UITextField *valueField = textfields[0];
+            self.prices[9] = [NSNumber numberWithInteger:[valueField.text integerValue]];
+            [self updateLabels];
+        }];
+        [alert addAction:action];
+        [self presentViewController:alert animated:true completion:nil];
+    }
 }
 
 //Check to make sure the user didnt just deselect a plan
