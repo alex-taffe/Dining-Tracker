@@ -5,4 +5,5 @@ target 'Dining Tracker' do
   pod 'Crashlytics'
   pod 'CZPicker'
   pod 'CircleProgressBar'
+  pod 'SDCloudUserDefaults'
 end
