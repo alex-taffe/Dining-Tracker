@@ -60,6 +60,12 @@
     if([self.preferences objectForKey:@"value"] == nil)
         [self.preferences setDouble:[self.prices[self.currentPlanSelected] doubleValue] forKey:@"value"];
     
+    //make sure the custom plan variable exists and if not, set it
+    if([self.preferences objectForKey:@"customValue"] == nil)
+        [self.preferences setDouble:[self.prices[9] doubleValue] forKey:@"customValue"];
+    
+    self.prices[9] = [NSNumber numberWithDouble:[self.preferences doubleForKey:@"customValue"]];
+    
     //recover the previous money left value
     self.moneyLeftField.text = [[NSString alloc] initWithFormat:@"$%0.2f", [self.preferences doubleForKey:@"value"]];
     
@@ -281,6 +287,7 @@
             NSArray *textfields = alert.textFields;
             UITextField *valueField = textfields[0];
             self.prices[9] = [NSNumber numberWithInteger:[valueField.text integerValue]];
+            [self.preferences setDouble:[self.prices[9] doubleValue] forKey:@"customValue"];
             [self updateLabels];
         }];
         [alert addAction:action];
