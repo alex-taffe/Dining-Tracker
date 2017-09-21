@@ -8,6 +8,7 @@
 
 @import Foundation;
 
+//Meal plan options
 typedef NS_ENUM(NSUInteger, MealPlanOption) {
     MealPlanOptionTiger20 = 325,
     MealPlanOptionTiger14 = 525,
@@ -22,15 +23,19 @@ typedef NS_ENUM(NSUInteger, MealPlanOption) {
 };
 
 @interface DiningTracker : NSObject
-
+#pragma mark: Class methods
 +(MealPlanOption)getMealPlanFromIndex:(int)index;
 +(NSString *)getTitleForMealPlan:(MealPlanOption)plan;
 +(int)indexOfMealPlan:(MealPlanOption)plan;
 
+#pragma mark: Class properties
 @property (class, nonatomic, assign, readonly) NSArray<NSString *> *MealPlans;
 
+#pragma mark: Instance methods
 -(instancetype)initWithSemesterBeginDate:(NSDate *)semesterBeginDate endDate:(NSDate *)endDate;
 -(void)updateDates;
+
+#pragma mark: Instance properties
 
 @property (nonatomic, readonly, getter=semesterPercent) double semesterPercent;
 @property (nonatomic, readonly, getter=daysRemaining) long daysRemaining;

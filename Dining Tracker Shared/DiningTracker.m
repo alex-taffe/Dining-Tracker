@@ -19,6 +19,8 @@
 @end
 
 @implementation DiningTracker
+
+#pragma mark: Class methods
 +(MealPlanOption)getMealPlanFromIndex:(int)index{
     switch (index) {
         case 0:
@@ -132,6 +134,7 @@
     }
 }
 
+#pragma mark: Class properties
 +(NSArray<NSString *> *)MealPlans{
     static NSArray *_MealPlans;
     static dispatch_once_t onceToken;
@@ -141,6 +144,7 @@
     return _MealPlans;
     
 }
+#pragma mark: Instance methods
 
 -(instancetype)initWithSemesterBeginDate:(NSDate *)beginDate endDate:(NSDate *)endDate{
     self = [super init];
@@ -184,6 +188,8 @@
     self.currentDays = [currentDateComponents day];
 }
 
+#pragma mark: Instance properties
+
 -(double)semesterPercent{
     return (double)self.currentDays / (double)self.totalDays;
 }
@@ -197,6 +203,7 @@
 }
 
 -(void)setCurrentDiningBalance:(double)diningBalance{
+    //limit dining balances
     if(diningBalance > 2 * self.mealPlanValue)
         diningBalance = 2 * self.mealPlanValue;
     [self.preferences setDouble:diningBalance forKey:@"value"];
