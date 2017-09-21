@@ -186,7 +186,7 @@
 
 // return the plan string for each individual row
 - (NSString *)czpickerView:(CZPickerView *)pickerView titleForRow:(NSInteger)row{
-    return DiningTracker.MealPlans[row];
+    return [[NSString alloc] initWithFormat:@"%@ - $%i", DiningTracker.MealPlans[row], (int)[DiningTracker getMealPlanFromIndex:(int)row]];
 }
 
 //called when a user has made a seleciton
