@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "DiningTracker.h"
 @import CZPicker;
 @import CircleProgressBar;
 
@@ -29,13 +30,9 @@
 @property (strong, nonatomic) CZPickerView *picker;
 @property (strong, nonatomic) UIView *statusBar;
 //static data
-@property (strong, nonatomic) NSArray<NSString *> *plans;
-@property (strong, nonatomic) NSArray<NSNumber *> *prices;
+@property (strong, nonatomic) DiningTracker *tracker;
 @property (nonatomic, strong) NSUserDefaults *preferences;
 //instance data
-@property (nonatomic) long totalDays;
-@property (nonatomic) long currentDays;
-@property (nonatomic) int currentPlanSelected;
 @property (nonatomic) BOOL hasDisplayedPickerOnce;
 @end
 
@@ -45,20 +42,32 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     //setup our instance data that is going to be give or take static
-    self.plans = @[@"Tiger 20 - $325", @"Tiger 14 - $525", @"Tiger 10 - $725", @"Tiger 5 - $1325", @"Orange - $2762", @"Gold - $1400", @"Silver - $1000", @"Bronze - $550", @"Brown - $2000"];
-    self.prices = @[@325, @525, @725, @1325, @2762, @1400, @1000, @550, @2000];
     self.preferences = [NSUserDefaults standardUserDefaults];
+    
+    //start and end of the semester
+    NSString *start = @"2017-08-27";
+    NSString *semesterEnd = @"2017-12-19";
+    
+    //set up a date formatter
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    
+    //get date objects of the semester start, end, and the current date
+    NSDate *startDate = [formatter dateFromString:start];
+    NSDate *semesterEndDate = [formatter dateFromString:semesterEnd];
+    
+    self.tracker = [[DiningTracker alloc] initWithSemesterBeginDate:startDate endDate:semesterEndDate];
     
     //make sure the plan variable exists and if not, set it
     if([self.preferences objectForKey:@"plan"] == nil)
         [self.preferences setInteger:0 forKey:@"plan"];
     
     //recover the currently selected plan
-    self.currentPlanSelected = (int)[self.preferences integerForKey:@"plan"];
+    self.tracker.currentMealPlan = [DiningTracker getMealPlanFromIndex:(int)[self.preferences integerForKey:@"plan"]];
     
     //make sure the value variable exists and if not, set it
     if([self.preferences objectForKey:@"value"] == nil)
-        [self.preferences setDouble:[self.prices[self.currentPlanSelected] doubleValue] forKey:@"value"];
+        [self.preferences setDouble:self.tracker.mealPlanValue forKey:@"value"];
     
     //recover the previous money left value
     self.moneyLeftField.text = [[NSString alloc] initWithFormat:@"$%0.2f", [self.preferences doubleForKey:@"value"]];
@@ -74,7 +83,7 @@
     self.picker.needFooterView = true; //add the footer
     self.picker.delegate = self; //set the delegate
     self.picker.dataSource = self; //set the datasource
-    [self.picker setSelectedRows:@[[NSNumber numberWithInt:self.currentPlanSelected]]]; //recover the currently selected plan
+    [self.picker setSelectedRows:@[[NSNumber numberWithInt:[DiningTracker indexOfMealPlan:self.tracker.currentMealPlan]]]]; //recover the currently selected plan
     
     //This just makes the status bar white so that it doesn't look awful when scrolling
     self.statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
@@ -109,7 +118,7 @@
 //so that even if it stays open in memory for a day
 //it doesn't matter. Also called at first open
 -(void)viewWillAppear:(BOOL)animated{
-    [self setupDates];
+    [self.tracker updateDates];
     [self updateLabels];
 }
 
@@ -128,59 +137,11 @@
 
 #pragma mark - Utility
 
-//modify the instance data with the current date information
--(void)setupDates{
-    //start and end of the semester
-    NSString *start = @"2017-08-27";
-    NSString *semesterEnd = @"2017-12-19";
-    
-    //set up a date formatter
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd"];
-    
-    //get date objects of the semester start, end, and the current date
-    NSDate *startDate = [formatter dateFromString:start];
-    NSDate *currentDate = [NSDate date];
-    NSDate *semesterEndDate = [formatter dateFromString:semesterEnd];
-    
-    //set up our calendar
-    NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    
-    //get the components
-    NSDateComponents *currentDateComponents = [gregorianCalendar components:NSCalendarUnitDay
-                                                               fromDate:startDate
-                                                                 toDate:currentDate
-                                                                options:0];
-    NSDateComponents *totalComponents = [gregorianCalendar components:NSCalendarUnitDay
-                                                             fromDate:startDate
-                                                               toDate:semesterEndDate
-                                                              options:0];
-    
-    //set our instance data
-    self.totalDays = [totalComponents day];
-    self.currentDays = [currentDateComponents day];
-}
-
 
 //update the UI
 -(void)updateLabels{
-    //all the variables we need
-    double percent = (double)self.currentDays / (double)self.totalDays; //percent of the semester we're into
-    double valueLeft = [[self.moneyLeftField.text stringByReplacingOccurrencesOfString:@"$" withString:@""] doubleValue]; //get the value left the user has. We have to remove the $ to get a proper double to return
-    int planValue = [self.prices[self.currentPlanSelected] intValue]; //get the value of the currently selected plan
-    double totalSpent = planValue - valueLeft; //how much they've spent
-    double shouldHaveSpent = planValue * percent; //how much they should've spent
-    double planProgressValue = totalSpent / planValue; //percentage of what they've spent
-    double overSpent = shouldHaveSpent - totalSpent; //how much they have overspent by
-    long daysRemaining = self.totalDays - self.currentDays; //how many days left in the semester
-    
-    
     //make sure that the value is not negative
-    if(valueLeft < 0){
-        //reset all values
-        valueLeft = 0;
-        totalSpent = planValue;
-        overSpent = shouldHaveSpent - totalSpent;
+    if(self.tracker.diningBalance < 0){
         self.moneyLeftField.text = @"$0.00";
         //alert the user
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"You can not have a negative dining balance" preferredStyle:UIAlertControllerStyleAlert];
@@ -190,12 +151,9 @@
     }
     
     //make sure the user hasn't entered a value that is too high
-    if(valueLeft > planValue){
+    if(self.tracker.diningBalance > self.tracker.mealPlanValue){
         //reset all values
-        valueLeft = planValue;
-        totalSpent = 0;
-        overSpent = shouldHaveSpent - totalSpent;
-        self.moneyLeftField.text = [[NSString alloc] initWithFormat:@"$%0.2f", (double)planValue];
+        self.moneyLeftField.text = [[NSString alloc] initWithFormat:@"$%0.2f", self.tracker.mealPlanValue];
         //alert the user
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"You can not have a value that exceeds your dining plan. Change your plan or reduce the amount." preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *action = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];

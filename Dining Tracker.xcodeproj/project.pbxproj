@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6CE5A96F37465CF090425C80 /* Pods_Dining_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EBD5402DA6ED34533EE8CC0 /* Pods_Dining_Tracker.framework */; };
+		FA6883E01F733C2E000A26F6 /* PriceGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6883DF1F733C2E000A26F6 /* PriceGroup.m */; };
 		FAC48B071F7178FD003462EB /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAC48B051F7178FD003462EB /* Interface.storyboard */; };
 		FAC48B091F7178FD003462EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAC48B081F7178FD003462EB /* Assets.xcassets */; };
 		FAC48B101F7178FD003462EB /* Dining Tracker Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FAC48B0F1F7178FD003462EB /* Dining Tracker Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -89,6 +90,8 @@
 		1B15DC5B172FDB56BAF68B3F /* Pods-Dining Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dining Tracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-Dining Tracker/Pods-Dining Tracker.release.xcconfig"; sourceTree = "<group>"; };
 		5EBD5402DA6ED34533EE8CC0 /* Pods_Dining_Tracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dining_Tracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D76E1C9B9345271A2B4FBE57 /* Pods-Dining Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dining Tracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Dining Tracker/Pods-Dining Tracker.debug.xcconfig"; sourceTree = "<group>"; };
+		FA6883DE1F733C2E000A26F6 /* PriceGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PriceGroup.h; sourceTree = "<group>"; };
+		FA6883DF1F733C2E000A26F6 /* PriceGroup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PriceGroup.m; sourceTree = "<group>"; };
 		FAC48B031F7178FD003462EB /* Dining Tracker Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dining Tracker Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAC48B061F7178FD003462EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		FAC48B081F7178FD003462EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -196,6 +199,8 @@
 				FAC48B1D1F7178FD003462EB /* Assets.xcassets */,
 				FAC48B1F1F7178FD003462EB /* Info.plist */,
 				FAC48B201F7178FD003462EB /* PushNotificationPayload.apns */,
+				FA6883DE1F733C2E000A26F6 /* PriceGroup.h */,
+				FA6883DF1F733C2E000A26F6 /* PriceGroup.m */,
 			);
 			path = "Dining Tracker Watch Extension";
 			sourceTree = "<group>";
@@ -553,6 +558,7 @@
 				FAC48B161F7178FD003462EB /* InterfaceController.m in Sources */,
 				FAC48B1C1F7178FD003462EB /* NotificationController.m in Sources */,
 				FAC48B301F717A2D003462EB /* DiningTracker.m in Sources */,
+				FA6883E01F733C2E000A26F6 /* PriceGroup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
