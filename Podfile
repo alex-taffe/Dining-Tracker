@@ -5,5 +5,9 @@ target 'Dining Tracker' do
   pod 'Crashlytics'
   pod 'CZPicker'
   pod 'CircleProgressBar'
-  pod 'SDCloudUserDefaults'
+  pod 'JTAppleCalendar'
+end
+
+target 'Dining Tracker Watch' do
+  
 end

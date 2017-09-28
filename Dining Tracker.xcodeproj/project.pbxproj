@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6CE5A96F37465CF090425C80 /* Pods_Dining_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EBD5402DA6ED34533EE8CC0 /* Pods_Dining_Tracker.framework */; };
+		D2C503D85C8CB57131C79AD1 /* Pods_Dining_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D42E115406A499E6E192AAA /* Pods_Dining_Tracker.framework */; };
 		FA6883E01F733C2E000A26F6 /* PriceGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6883DF1F733C2E000A26F6 /* PriceGroup.m */; };
+		FA7AD4561F740B8900CFD93A /* DiningTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC48B2E1F717A1E003462EB /* DiningTracker.m */; };
 		FAC48B071F7178FD003462EB /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAC48B051F7178FD003462EB /* Interface.storyboard */; };
 		FAC48B091F7178FD003462EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAC48B081F7178FD003462EB /* Assets.xcassets */; };
 		FAC48B101F7178FD003462EB /* Dining Tracker Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FAC48B0F1F7178FD003462EB /* Dining Tracker Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -16,9 +17,7 @@
 		FAC48B191F7178FD003462EB /* ExtensionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC48B181F7178FD003462EB /* ExtensionDelegate.m */; };
 		FAC48B1C1F7178FD003462EB /* NotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC48B1B1F7178FD003462EB /* NotificationController.m */; };
 		FAC48B1E1F7178FD003462EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAC48B1D1F7178FD003462EB /* Assets.xcassets */; };
-		FAC48B231F7178FD003462EB /* Dining Tracker Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = FAC48B031F7178FD003462EB /* Dining Tracker Watch.app */; };
 		FAC48B2F1F717A1E003462EB /* DiningTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC48B2E1F717A1E003462EB /* DiningTracker.m */; };
-		FAC48B301F717A2D003462EB /* DiningTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC48B2E1F717A1E003462EB /* DiningTracker.m */; };
 		FAD028BD1F68400600CA0122 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD028BC1F68400600CA0122 /* main.m */; };
 		FAD028C01F68400600CA0122 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD028BF1F68400600CA0122 /* AppDelegate.m */; };
 		FAD028C31F68400600CA0122 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD028C21F68400600CA0122 /* ViewController.m */; };
@@ -28,6 +27,7 @@
 		FAD028CE1F68400600CA0122 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAD028CC1F68400600CA0122 /* LaunchScreen.storyboard */; };
 		FAD028D91F68400600CA0122 /* Dining_TrackerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD028D81F68400600CA0122 /* Dining_TrackerTests.m */; };
 		FAD028E41F68400600CA0122 /* Dining_TrackerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD028E31F68400600CA0122 /* Dining_TrackerUITests.m */; };
+		FD5A3931F1425B3A601F9281 /* Pods_Dining_Tracker_Watch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D625FA387B95B93ACA463FAE /* Pods_Dining_Tracker_Watch.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,13 +37,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = FAC48B0E1F7178FD003462EB;
 			remoteInfo = "Dining Tracker Watch Extension";
-		};
-		FAC48B211F7178FD003462EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FAD028B01F68400600CA0122 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FAC48B021F7178FD003462EB;
-			remoteInfo = "Dining Tracker Watch";
 		};
 		FAD028D51F68400600CA0122 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -79,7 +72,6 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				FAC48B231F7178FD003462EB /* Dining Tracker Watch.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -87,9 +79,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1B15DC5B172FDB56BAF68B3F /* Pods-Dining Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dining Tracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-Dining Tracker/Pods-Dining Tracker.release.xcconfig"; sourceTree = "<group>"; };
-		5EBD5402DA6ED34533EE8CC0 /* Pods_Dining_Tracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dining_Tracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D76E1C9B9345271A2B4FBE57 /* Pods-Dining Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dining Tracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Dining Tracker/Pods-Dining Tracker.debug.xcconfig"; sourceTree = "<group>"; };
+		19D53CFF7DDA32F2EDA0A06C /* Pods-Dining Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dining Tracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-Dining Tracker/Pods-Dining Tracker.release.xcconfig"; sourceTree = "<group>"; };
+		1D555E268C856A9D035B1BCB /* Pods-Dining Tracker Watch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dining Tracker Watch.release.xcconfig"; path = "Pods/Target Support Files/Pods-Dining Tracker Watch/Pods-Dining Tracker Watch.release.xcconfig"; sourceTree = "<group>"; };
+		919A1842642FC4920E60296A /* Pods_Dining_Tracker_Watch_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dining_Tracker_Watch_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D42E115406A499E6E192AAA /* Pods_Dining_Tracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dining_Tracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C45DDDBE2CD86E5B72351665 /* Pods-Dining Tracker Watch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dining Tracker Watch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Dining Tracker Watch/Pods-Dining Tracker Watch.debug.xcconfig"; sourceTree = "<group>"; };
+		D625FA387B95B93ACA463FAE /* Pods_Dining_Tracker_Watch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dining_Tracker_Watch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D690A2E27C176C0FCEE98D97 /* Pods-Dining Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dining Tracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Dining Tracker/Pods-Dining Tracker.debug.xcconfig"; sourceTree = "<group>"; };
 		FA6883DE1F733C2E000A26F6 /* PriceGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PriceGroup.h; sourceTree = "<group>"; };
 		FA6883DF1F733C2E000A26F6 /* PriceGroup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PriceGroup.m; sourceTree = "<group>"; };
 		FAC48B031F7178FD003462EB /* Dining Tracker Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dining Tracker Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,6 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD5A3931F1425B3A601F9281 /* Pods_Dining_Tracker_Watch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,7 +143,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6CE5A96F37465CF090425C80 /* Pods_Dining_Tracker.framework in Frameworks */,
+				D2C503D85C8CB57131C79AD1 /* Pods_Dining_Tracker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,21 +164,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3FA42E6E6CDB43E16D5CD832 /* Pods */ = {
+		94F9D4514086C5AEFEA3F4AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D76E1C9B9345271A2B4FBE57 /* Pods-Dining Tracker.debug.xcconfig */,
-				1B15DC5B172FDB56BAF68B3F /* Pods-Dining Tracker.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		7AB0818AADB8B4DF3FA6F020 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				5EBD5402DA6ED34533EE8CC0 /* Pods_Dining_Tracker.framework */,
+				9D42E115406A499E6E192AAA /* Pods_Dining_Tracker.framework */,
+				D625FA387B95B93ACA463FAE /* Pods_Dining_Tracker_Watch.framework */,
+				919A1842642FC4920E60296A /* Pods_Dining_Tracker_Watch_Extension.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ECD3B50FC85F07EC6DFA557D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D690A2E27C176C0FCEE98D97 /* Pods-Dining Tracker.debug.xcconfig */,
+				19D53CFF7DDA32F2EDA0A06C /* Pods-Dining Tracker.release.xcconfig */,
+				C45DDDBE2CD86E5B72351665 /* Pods-Dining Tracker Watch.debug.xcconfig */,
+				1D555E268C856A9D035B1BCB /* Pods-Dining Tracker Watch.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		FAC48B041F7178FD003462EB /* Dining Tracker Watch */ = {
@@ -231,8 +232,8 @@
 				FAC48B041F7178FD003462EB /* Dining Tracker Watch */,
 				FAC48B131F7178FD003462EB /* Dining Tracker Watch Extension */,
 				FAD028B91F68400600CA0122 /* Products */,
-				3FA42E6E6CDB43E16D5CD832 /* Pods */,
-				7AB0818AADB8B4DF3FA6F020 /* Frameworks */,
+				ECD3B50FC85F07EC6DFA557D /* Pods */,
+				94F9D4514086C5AEFEA3F4AE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -298,9 +299,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FAC48B281F7178FD003462EB /* Build configuration list for PBXNativeTarget "Dining Tracker Watch" */;
 			buildPhases = (
+				2554EFCA323DEE8C930B2C42 /* [CP] Check Pods Manifest.lock */,
 				FAC48B011F7178FD003462EB /* Resources */,
 				FAC48B271F7178FD003462EB /* Embed App Extensions */,
 				572E0239965BED3C141C179B /* Frameworks */,
+				F87B2B637EDF11658295E499 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -333,19 +336,18 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FAD028E81F68400600CA0122 /* Build configuration list for PBXNativeTarget "Dining Tracker" */;
 			buildPhases = (
-				7F9EEDB72B84A36D27F23AE1 /* [CP] Check Pods Manifest.lock */,
+				82942B1CAE3B33CF2D3F7F79 /* [CP] Check Pods Manifest.lock */,
 				FAD028B41F68400600CA0122 /* Sources */,
 				FAD028B51F68400600CA0122 /* Frameworks */,
 				FAD028B61F68400600CA0122 /* Resources */,
 				FA12E40E1F6B27D900B54A21 /* ShellScript */,
-				EDA8484A7A9DBA0AF1C27C6C /* [CP] Embed Pods Frameworks */,
-				F7B34533F0B6E44B59D1320E /* [CP] Copy Pods Resources */,
 				FAC48B2B1F7178FD003462EB /* Embed Watch Content */,
+				7CE3420C5358FF773DACE411 /* [CP] Embed Pods Frameworks */,
+				26860C1D6867E3D5ABF5A07F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				FAC48B221F7178FD003462EB /* PBXTargetDependency */,
 			);
 			name = "Dining Tracker";
 			productName = "Dining Tracker";
@@ -489,45 +491,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		7F9EEDB72B84A36D27F23AE1 /* [CP] Check Pods Manifest.lock */ = {
+		2554EFCA323DEE8C930B2C42 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Dining Tracker-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		EDA8484A7A9DBA0AF1C27C6C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Dining Tracker/Pods-Dining Tracker-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/CZPicker/CZPicker.framework",
-				"${BUILT_PRODUCTS_DIR}/CircleProgressBar/CircleProgressBar.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CZPicker.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CircleProgressBar.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Dining Tracker/Pods-Dining Tracker-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F7B34533F0B6E44B59D1320E /* [CP] Copy Pods Resources */ = {
+		26860C1D6867E3D5ABF5A07F /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -540,6 +519,51 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Dining Tracker/Pods-Dining Tracker-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7CE3420C5358FF773DACE411 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Dining Tracker/Pods-Dining Tracker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		82942B1CAE3B33CF2D3F7F79 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F87B2B637EDF11658295E499 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Dining Tracker Watch/Pods-Dining Tracker Watch-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FA12E40E1F6B27D900B54A21 /* ShellScript */ = {
@@ -564,8 +588,8 @@
 			files = (
 				FAC48B191F7178FD003462EB /* ExtensionDelegate.m in Sources */,
 				FAC48B161F7178FD003462EB /* InterfaceController.m in Sources */,
+				FA7AD4561F740B8900CFD93A /* DiningTracker.m in Sources */,
 				FAC48B1C1F7178FD003462EB /* NotificationController.m in Sources */,
-				FAC48B301F717A2D003462EB /* DiningTracker.m in Sources */,
 				FA6883E01F733C2E000A26F6 /* PriceGroup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -605,11 +629,6 @@
 			isa = PBXTargetDependency;
 			target = FAC48B0E1F7178FD003462EB /* Dining Tracker Watch Extension */;
 			targetProxy = FAC48B111F7178FD003462EB /* PBXContainerItemProxy */;
-		};
-		FAC48B221F7178FD003462EB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = FAC48B021F7178FD003462EB /* Dining Tracker Watch */;
-			targetProxy = FAC48B211F7178FD003462EB /* PBXContainerItemProxy */;
 		};
 		FAD028D61F68400600CA0122 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -693,6 +712,7 @@
 		};
 		FAC48B291F7178FD003462EB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C45DDDBE2CD86E5B72351665 /* Pods-Dining Tracker Watch.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -713,6 +733,7 @@
 		};
 		FAC48B2A1F7178FD003462EB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1D555E268C856A9D035B1BCB /* Pods-Dining Tracker Watch.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -837,7 +858,7 @@
 		};
 		FAD028E91F68400600CA0122 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D76E1C9B9345271A2B4FBE57 /* Pods-Dining Tracker.debug.xcconfig */;
+			baseConfigurationReference = D690A2E27C176C0FCEE98D97 /* Pods-Dining Tracker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -853,7 +874,7 @@
 		};
 		FAD028EA1F68400600CA0122 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1B15DC5B172FDB56BAF68B3F /* Pods-Dining Tracker.release.xcconfig */;
+			baseConfigurationReference = 19D53CFF7DDA32F2EDA0A06C /* Pods-Dining Tracker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

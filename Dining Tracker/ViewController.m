@@ -5,11 +5,13 @@
 //  Created by Alex Taffe on 9/12/17.
 //  Copyright © 2017 Alex Taffe. All rights reserved.
 //
-
-#import "ViewController.h"
 #import "DiningTracker.h"
+#import "AppDelegate.h"
+#import "ViewController.h"
+
 @import CZPicker;
 @import CircleProgressBar;
+@import WatchConnectivity;
 
 @interface ViewController () <CZPickerViewDataSource, CZPickerViewDelegate, UITextFieldDelegate>
 //storyboard UI
@@ -41,20 +43,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     //setup our instance data that is going to be give or take static
+    self.tracker = ((AppDelegate *)[[UIApplication sharedApplication] delegate]).tracker;
     
-    //start and end of the semester
-    NSString *start = @"2017-08-27";
-    NSString *semesterEnd = @"2017-12-19";
-    
-    //set up a date formatter
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd"];
-    
-    //get date objects of the semester start, end, and the current date
-    NSDate *startDate = [formatter dateFromString:start];
-    NSDate *semesterEndDate = [formatter dateFromString:semesterEnd];
-    
-    self.tracker = [[DiningTracker alloc] initWithSemesterBeginDate:startDate endDate:semesterEndDate];
     
     //recover the previous money left value
     self.moneyLeftField.text = [[NSString alloc] initWithFormat:@"$%0.2f", self.tracker.diningBalance];

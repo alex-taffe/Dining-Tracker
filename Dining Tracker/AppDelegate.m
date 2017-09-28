@@ -11,7 +11,7 @@
 @import Crashlytics;
 
 
-@interface AppDelegate ()
+@interface AppDelegate ()<WCSessionDelegate>
 
 @end
 
@@ -22,6 +22,28 @@
     // Override point for customization after application launch.
     //use and crash metric tracking
     [Fabric with:@[[Crashlytics class]]];
+    
+    //start and end of the semester
+    NSString *start = @"2017-08-27";
+    NSString *semesterEnd = @"2017-12-19";
+    
+    //set up a date formatter
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    
+    //get date objects of the semester start, end, and the current date
+    NSDate *startDate = [formatter dateFromString:start];
+    NSDate *semesterEndDate = [formatter dateFromString:semesterEnd];
+    
+    self.tracker = [[DiningTracker alloc] initWithSemesterBeginDate:startDate endDate:semesterEndDate];
+    
+    //apple watch
+    if([WCSession isSupported]){
+        self.watchSession = [WCSession defaultSession];
+        self.watchSession.delegate = self;
+        [self.watchSession activateSession];
+        [self.watchSession updateApplicationContext:@{@"Message" : @"Test"} error:nil];
+    }
 
     return YES;
 }

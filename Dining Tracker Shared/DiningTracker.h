@@ -7,6 +7,7 @@
 //
 
 @import Foundation;
+@import WatchConnectivity;
 
 //Meal plan options
 typedef NS_ENUM(NSUInteger, MealPlanOption) {
@@ -50,5 +51,7 @@ typedef NS_ENUM(NSUInteger, MealPlanOption) {
 @property (nonatomic, readonly, getter=overSpent) double overSpent;
 @property (nonatomic, readonly, getter=leftPerDay) double leftPerDay;
 @property (nonatomic, readonly, getter=planPerDay) double planPerDay;
+
+@property (strong, nonatomic) WCSession *watchSession;
 
 @end
