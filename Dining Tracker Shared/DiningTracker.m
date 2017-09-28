@@ -164,6 +164,15 @@
     if([self.preferences objectForKey:@"value"] == nil)
         [self.preferences setDouble:self.mealPlanValue forKey:@"value"];
     
+    //see if the days off have been set yet. If not, init with default values
+    if([self.preferences objectForKey:@"daysOff"] == nil){
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        
+        NSArray<NSDate *> *temp = @[[dateFormatter dateFromString:@"2017-08-01"], [dateFormatter dateFromString:@"2017-08-02"], [dateFormatter dateFromString:@"2017-08-03"], [dateFormatter dateFromString:@"2017-08-04"], [dateFormatter dateFromString:@"2017-08-05"], [dateFormatter dateFromString:@"2017-08-06"], [dateFormatter dateFromString:@"2017-08-07"], [dateFormatter dateFromString:@"2017-08-08"], [dateFormatter dateFromString:@"2017-08-09"], [dateFormatter dateFromString:@"2017-08-10"], [dateFormatter dateFromString:@"2017-08-11"], [dateFormatter dateFromString:@"2017-08-12"], [dateFormatter dateFromString:@"2017-08-13"], [dateFormatter dateFromString:@"2017-08-14"], [dateFormatter dateFromString:@"2017-08-15"], [dateFormatter dateFromString:@"2017-08-16"], [dateFormatter dateFromString:@"2017-08-17"], [dateFormatter dateFromString:@"2017-08-18"], [dateFormatter dateFromString:@"2017-08-19"], [dateFormatter dateFromString:@"2017-08-20"], [dateFormatter dateFromString:@"2017-08-21"], [dateFormatter dateFromString:@"2017-08-22"], [dateFormatter dateFromString:@"2017-08-23"], [dateFormatter dateFromString:@"2017-08-24"], [dateFormatter dateFromString:@"2017-08-25"], [dateFormatter dateFromString:@"2017-08-26"], [dateFormatter dateFromString:@"2017-08-27"], [dateFormatter dateFromString:@"2017-11-22"], [dateFormatter dateFromString:@"2017-11-23"], [dateFormatter dateFromString:@"2017-11-24"], [dateFormatter dateFromString:@"2017-11-25"], [dateFormatter dateFromString:@"2017-12-20"], [dateFormatter dateFromString:@"2017-12-21"], [dateFormatter dateFromString:@"2017-12-22"], [dateFormatter dateFromString:@"2017-12-23"], [dateFormatter dateFromString:@"2017-12-24"], [dateFormatter dateFromString:@"2017-12-25"], [dateFormatter dateFromString:@"2017-12-26"], [dateFormatter dateFromString:@"2017-12-27"], [dateFormatter dateFromString:@"2017-12-28"], [dateFormatter dateFromString:@"2017-12-29"], [dateFormatter dateFromString:@"2017-12-30"], [dateFormatter dateFromString:@"2017-12-31"]];
+        [self.preferences setObject:temp forKey:@"daysOff"];
+    }
+    
     return self;
 }
 
@@ -184,7 +193,7 @@
                                                               options:0];
     
     //set our instance data
-    self.totalDays = [totalComponents day];
+    self.totalDays = [totalComponents day] - self.daysOff.count;
     self.currentDays = [currentDateComponents day];
 }
 
@@ -247,6 +256,14 @@
 
 -(double)planPerDay{
     return self.mealPlanValue / (double)self.totalDays;
+}
+
+-(NSArray<NSDate *> *)getDaysOff{
+    return (NSArray<NSDate *> *)[self.preferences objectForKey:@"daysOff"];
+}
+
+-(void)setDaysOff:(NSArray<NSDate *> *)daysOff{
+    [self.preferences setObject:daysOff forKey:@"daysOff"];
 }
 
 @end

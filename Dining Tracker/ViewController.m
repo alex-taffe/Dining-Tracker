@@ -8,15 +8,18 @@
 #import "DiningTracker.h"
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "CalendarViewController.h"
 
 @import CZPicker;
 @import CircleProgressBar;
 @import WatchConnectivity;
+@import MZFormSheetController;
 
 @interface ViewController () <CZPickerViewDataSource, CZPickerViewDelegate, UITextFieldDelegate>
 //storyboard UI
 @property (strong, nonatomic) IBOutlet UILabel *planLabel;
 @property (strong, nonatomic) IBOutlet UIButton *editButton;
+@property (strong, nonatomic) IBOutlet UIButton *daysOffButton;
 @property (strong, nonatomic) IBOutlet UITextField *moneyLeftField;
 @property (strong, nonatomic) IBOutlet CircleProgressBar *yearProgress;
 @property (strong, nonatomic) IBOutlet CircleProgressBar *planProgress;
@@ -72,6 +75,11 @@
     self.editButton.tintColor = UIColor.whiteColor;
     self.editButton.layer.cornerRadius = 5;
     
+    //add some style to the days off button
+    self.daysOffButton.backgroundColor = [UIColor colorWithRed:0.95 green:0.43 blue:0.13 alpha:1.00];
+    self.daysOffButton.tintColor = UIColor.whiteColor;
+    self.daysOffButton.layer.cornerRadius = 5;
+    
     //set the money left delegate
     self.moneyLeftField.delegate = self;
     
@@ -88,6 +96,10 @@
     //add a gesture to make tapping outside the keyboard dismiss it
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
+    
+    [[MZFormSheetBackgroundWindow appearance] setBackgroundBlurEffect:YES];
+    [[MZFormSheetBackgroundWindow appearance] setBlurRadius:5.0];
+    [[MZFormSheetBackgroundWindow appearance] setBackgroundColor:[UIColor clearColor]];
 
 }
 
@@ -102,6 +114,20 @@
 //called when the user wants to edit their meal plan selection
 - (IBAction)editMealPlan:(id)sender {
     [self.picker show];
+}
+- (IBAction)editDaysOff:(id)sender {
+    CalendarViewController *calendar = (CalendarViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"calendarController"];
+    
+    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:calendar];
+    formSheet.transitionStyle = MZFormSheetTransitionStyleSlideFromBottom;
+    formSheet.presentedFormSheetSize = CGSizeMake(300, 436);
+    
+    
+    [UIView animateWithDuration:0.0 animations:^{
+        self.statusBar.backgroundColor = UIColor.clearColor;
+    }];
+    
+    [self mz_presentFormSheetController:formSheet animated:true completionHandler:nil];
 }
 
 

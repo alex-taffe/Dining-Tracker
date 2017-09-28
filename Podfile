@@ -6,6 +6,7 @@ target 'Dining Tracker' do
   pod 'CZPicker'
   pod 'CircleProgressBar'
   pod 'FSCalendar'
+  pod 'MZFormSheetController'
 end
 
 target 'Dining Tracker Watch' do

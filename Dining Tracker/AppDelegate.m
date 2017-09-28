@@ -24,8 +24,8 @@
     [Fabric with:@[[Crashlytics class]]];
     
     //start and end of the semester
-    NSString *start = @"2017-08-27";
-    NSString *semesterEnd = @"2017-12-19";
+    NSString *start = @"2017-08-1";
+    NSString *semesterEnd = @"2017-12-31";
     
     //set up a date formatter
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
