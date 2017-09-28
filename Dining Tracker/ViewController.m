@@ -98,8 +98,10 @@
     [self.view addGestureRecognizer:tap];
     
     [[MZFormSheetBackgroundWindow appearance] setBackgroundBlurEffect:YES];
-    [[MZFormSheetBackgroundWindow appearance] setBlurRadius:5.0];
-    [[MZFormSheetBackgroundWindow appearance] setBackgroundColor:[UIColor clearColor]];
+    [[MZFormSheetBackgroundWindow appearance] setAlpha:0.5];
+    [[MZFormSheetBackgroundWindow appearance] setBlurRadius:0.5];
+    [[MZFormSheetBackgroundWindow appearance] setBlurEffectStyle:UIBlurEffectStyleDark];
+    
 
 }
 
@@ -121,6 +123,7 @@
     MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:calendar];
     formSheet.transitionStyle = MZFormSheetTransitionStyleSlideFromBottom;
     formSheet.presentedFormSheetSize = CGSizeMake(300, 436);
+    formSheet.cornerRadius = 6.0;
     
     
     [UIView animateWithDuration:0.0 animations:^{

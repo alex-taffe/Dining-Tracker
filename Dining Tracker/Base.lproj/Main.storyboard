@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -414,7 +415,7 @@ Spent</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.95294117649999999" green="0.43137254899999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.8901960784313725" green="0.45882352941176469" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="CbV-j5-7Ez" firstAttribute="centerY" secondItem="uKG-Vx-kY8" secondAttribute="centerY" id="SlG-yZ-WLw"/>
                                     <constraint firstItem="CbV-j5-7Ez" firstAttribute="centerX" secondItem="uKG-Vx-kY8" secondAttribute="centerX" id="Yay-PT-hd1"/>
@@ -424,18 +425,33 @@ Spent</string>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rfS-2X-MFF">
                                 <rect key="frame" x="0.0" y="392" width="414" height="44"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CXw-Bk-xuF">
-                                        <rect key="frame" x="184" y="7" width="46" height="30"/>
-                                        <state key="normal" title="Button"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VaB-HN-oNP">
+                                        <rect key="frame" x="207" y="0.0" width="207" height="44"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="Ok"/>
                                         <connections>
-                                            <action selector="doneButtonPressed:" destination="IK1-kH-dJg" eventType="touchUpInside" id="gnh-dx-RD2"/>
+                                            <action selector="doneButtonPressed:" destination="IK1-kH-dJg" eventType="touchUpInside" id="98H-3z-UZu"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZyJ-5I-gpo">
+                                        <rect key="frame" x="0.0" y="0.0" width="207" height="44"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="Cancel"/>
+                                        <connections>
+                                            <action selector="cancelButtonPressed:" destination="IK1-kH-dJg" eventType="touchUpInside" id="RQX-aW-8PM"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="CXw-Bk-xuF" firstAttribute="centerX" secondItem="rfS-2X-MFF" secondAttribute="centerX" id="NW8-o9-Kf1"/>
-                                    <constraint firstItem="CXw-Bk-xuF" firstAttribute="centerY" secondItem="rfS-2X-MFF" secondAttribute="centerY" id="Tbo-if-hua"/>
+                                    <constraint firstItem="VaB-HN-oNP" firstAttribute="width" secondItem="rfS-2X-MFF" secondAttribute="width" multiplier="0.5" id="B6u-Hf-9EZ"/>
+                                    <constraint firstItem="ZyJ-5I-gpo" firstAttribute="leading" secondItem="rfS-2X-MFF" secondAttribute="leading" id="DzH-UK-vqY"/>
+                                    <constraint firstAttribute="trailing" secondItem="VaB-HN-oNP" secondAttribute="trailing" id="FcW-ow-Tn9"/>
+                                    <constraint firstAttribute="bottom" secondItem="VaB-HN-oNP" secondAttribute="bottom" id="Jvh-gu-b8k"/>
+                                    <constraint firstAttribute="bottom" secondItem="ZyJ-5I-gpo" secondAttribute="bottom" id="PIj-0E-UWx"/>
+                                    <constraint firstItem="VaB-HN-oNP" firstAttribute="top" secondItem="rfS-2X-MFF" secondAttribute="top" id="Tej-Hk-eNb"/>
+                                    <constraint firstItem="ZyJ-5I-gpo" firstAttribute="top" secondItem="rfS-2X-MFF" secondAttribute="top" id="VKa-HX-e6k"/>
+                                    <constraint firstItem="ZyJ-5I-gpo" firstAttribute="width" secondItem="rfS-2X-MFF" secondAttribute="width" multiplier="0.5" id="eb4-TM-KSQ"/>
                                     <constraint firstAttribute="height" constant="44" id="sR7-rI-7ZA"/>
                                 </constraints>
                             </view>
@@ -457,6 +473,9 @@ Spent</string>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="calendar" destination="O5d-nO-pw8" id="bOw-P2-Wwk"/>
+                        <outlet property="cancelButton" destination="ZyJ-5I-gpo" id="C6J-XZ-Vne"/>
+                        <outlet property="doneButton" destination="VaB-HN-oNP" id="8gv-s3-e5c"/>
+                        <outlet property="headerBackgroundView" destination="uKG-Vx-kY8" id="Pwp-9c-j1Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kq9-4s-Wyk" userLabel="First Responder" sceneMemberID="firstResponder"/>

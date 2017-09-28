@@ -14,6 +14,9 @@
 
 @interface CalendarViewController ()<FSCalendarDelegate, FSCalendarDataSource>
 @property (strong, nonatomic) IBOutlet FSCalendar *calendar;
+@property (strong, nonatomic) IBOutlet UIButton *doneButton;
+@property (strong, nonatomic) IBOutlet UIButton *cancelButton;
+@property (strong, nonatomic) IBOutlet UIView *headerBackgroundView;
 @property (strong, nonatomic) DiningTracker *tracker;
 @end
 
@@ -28,6 +31,16 @@
     for(NSDate *date in self.tracker.daysOff)
         [self.calendar selectDate:date];
     
+    self.cancelButton.backgroundColor = [UIColor colorWithRed:0.93 green:0.94 blue:0.95 alpha:1.00];
+    self.cancelButton.tintColor = [UIColor colorWithRed:0.24 green:0.28 blue:0.08 alpha:1.00];
+    
+    self.doneButton.backgroundColor = [UIColor colorWithRed:0.89 green:0.46 blue:0.22 alpha:1.00];
+    self.doneButton.tintColor = UIColor.whiteColor;
+    
+    
+    self.headerBackgroundView.backgroundColor = [UIColor colorWithRed:0.89 green:0.46 blue:0.22 alpha:1.00];
+    
+    [self.calendar setCurrentPage:[NSDate date]];
     
 }
 
@@ -35,6 +48,12 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+- (IBAction)cancelButtonPressed:(id)sender {
+    [self mz_dismissFormSheetControllerAnimated:true completionHandler:nil];
+}
+
 - (IBAction)doneButtonPressed:(id)sender {
     [self mz_dismissFormSheetControllerAnimated:true completionHandler:^(MZFormSheetController * _Nonnull formSheetController) {
         
