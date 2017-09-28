@@ -183,6 +183,18 @@
     NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     
     //get the components
+    int i;
+    for(i = 0; i < self.daysOff.count; i++){
+        if([[gregorianCalendar components:NSCalendarUnitDay
+                                          fromDate:self.daysOff[i]
+                                            toDate:currentDate
+                                           options:0] day] < 0)
+            break;
+    }
+    i--;
+    
+    
+    
     NSDateComponents *currentDateComponents = [gregorianCalendar components:NSCalendarUnitDay
                                                                    fromDate:self.semesterBeginDate
                                                                      toDate:currentDate
@@ -194,7 +206,7 @@
     
     //set our instance data
     self.totalDays = [totalComponents day] - self.daysOff.count;
-    self.currentDays = [currentDateComponents day];
+    self.currentDays = [currentDateComponents day] - i;
 }
 
 #pragma mark: Instance properties
