@@ -55,9 +55,8 @@
 }
 
 - (IBAction)doneButtonPressed:(id)sender {
-    [self mz_dismissFormSheetControllerAnimated:true completionHandler:^(MZFormSheetController * _Nonnull formSheetController) {
-        
-    }];
+    self.tracker.daysOff = self.calendar.selectedDates;
+    [self mz_dismissFormSheetControllerAnimated:true completionHandler:nil];
 }
 
 

@@ -207,6 +207,8 @@
     //set our instance data
     self.totalDays = [totalComponents day] - self.daysOff.count;
     self.currentDays = [currentDateComponents day] - i;
+    if([self.delegate respondsToSelector:@selector(updateLabels)])
+        [self.delegate updateLabels];
 }
 
 #pragma mark: Instance properties
@@ -276,6 +278,7 @@
 
 -(void)setDaysOff:(NSArray<NSDate *> *)daysOff{
     [self.preferences setObject:daysOff forKey:@"daysOff"];
+    [self updateDates];
 }
 
 @end

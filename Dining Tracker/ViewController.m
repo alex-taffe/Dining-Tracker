@@ -15,7 +15,7 @@
 @import WatchConnectivity;
 @import MZFormSheetController;
 
-@interface ViewController () <CZPickerViewDataSource, CZPickerViewDelegate, UITextFieldDelegate>
+@interface ViewController () <CZPickerViewDataSource, CZPickerViewDelegate, UITextFieldDelegate, DiningTrackerDelegate>
 //storyboard UI
 @property (strong, nonatomic) IBOutlet UILabel *planLabel;
 @property (strong, nonatomic) IBOutlet UIButton *editButton;
@@ -47,6 +47,7 @@
     // Do any additional setup after loading the view, typically from a nib.
     //setup our instance data that is going to be give or take static
     self.tracker = ((AppDelegate *)[[UIApplication sharedApplication] delegate]).tracker;
+    self.tracker.delegate = self;
     
     
     //recover the previous money left value
@@ -110,7 +111,7 @@
 //it doesn't matter. Also called at first open
 -(void)viewWillAppear:(BOOL)animated{
     [self.tracker updateDates];
-    [self updateLabels];
+    //[self updateLabels];
 }
 
 //called when the user wants to edit their meal plan selection
@@ -129,8 +130,9 @@
     [UIView animateWithDuration:0.0 animations:^{
         self.statusBar.backgroundColor = UIColor.clearColor;
     }];
-    
-    [self mz_presentFormSheetController:formSheet animated:true completionHandler:nil];
+    [self mz_presentFormSheetController:formSheet animated:true completionHandler:^(MZFormSheetController * _Nonnull formSheetController) {
+        NSLog(@"done");
+    }];
 }
 
 

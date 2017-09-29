@@ -23,6 +23,10 @@ typedef NS_ENUM(NSUInteger, MealPlanOption) {
     MealPlanOptionUnknown = NSUIntegerMax
 };
 
+@protocol DiningTrackerDelegate<NSObject>
+-(void)updateLabels;
+@end
+
 @interface DiningTracker : NSObject
 #pragma mark: Class methods
 +(MealPlanOption)getMealPlanFromIndex:(int)index;
@@ -54,5 +58,7 @@ typedef NS_ENUM(NSUInteger, MealPlanOption) {
 @property (strong, nonatomic, getter=getDaysOff, setter=setDaysOff:) NSArray <NSDate *> *daysOff;
 
 @property (strong, nonatomic) WCSession *watchSession;
+
+@property (nonatomic, weak) id<DiningTrackerDelegate> delegate;
 
 @end
