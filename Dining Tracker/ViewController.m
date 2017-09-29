@@ -278,7 +278,16 @@
 
 //called every time the user tries to edit the value remaining
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    NSString *newText = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    NSString *newText;
+    if([string containsString:@"$"]){
+        [textField setText:@""];
+        newText = string;
+    }
+    else{
+       newText = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    }
+
+    
     // allow backspace
     if (!string.length && textField.text.length > 1)
         return true;
@@ -286,7 +295,7 @@
     //characters allowed
     NSCharacterSet *numbersSet = [NSCharacterSet characterSetWithCharactersInString:@"$0123456789."];
     //actual characters
-    NSCharacterSet *characterSetFromTextField = [NSCharacterSet characterSetWithCharactersInString:textField.text];
+    NSCharacterSet *characterSetFromTextField = [NSCharacterSet characterSetWithCharactersInString:string];
     
     //only let allowed characters occur
     if(![numbersSet isSupersetOfSet:characterSetFromTextField])
