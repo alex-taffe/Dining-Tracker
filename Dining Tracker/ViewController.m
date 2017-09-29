@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "ViewController.h"
 #import "CalendarViewController.h"
+#import "AboutViewController.h"
 
 @import CZPicker;
 @import CircleProgressBar;
@@ -20,6 +21,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *planLabel;
 @property (strong, nonatomic) IBOutlet UIButton *editButton;
 @property (strong, nonatomic) IBOutlet UIButton *daysOffButton;
+@property (strong, nonatomic) IBOutlet UIButton *aboutButton;
 @property (strong, nonatomic) IBOutlet UITextField *moneyLeftField;
 @property (strong, nonatomic) IBOutlet CircleProgressBar *yearProgress;
 @property (strong, nonatomic) IBOutlet CircleProgressBar *planProgress;
@@ -80,6 +82,9 @@
     self.daysOffButton.backgroundColor = [UIColor colorWithRed:0.95 green:0.43 blue:0.13 alpha:1.00];
     self.daysOffButton.tintColor = UIColor.whiteColor;
     self.daysOffButton.layer.cornerRadius = 5;
+    
+    //about button styling
+    self.aboutButton.tintColor = [UIColor colorWithRed:0.95 green:0.43 blue:0.13 alpha:1.00];
     
     //set the money left delegate
     self.moneyLeftField.delegate = self;
@@ -319,5 +324,19 @@
     // Default:
     return true;
 }
+
+
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+     // Get the new view controller using [segue destinationViewController].
+     // Pass the selected object to the new view controller.
+     if([segue.identifier isEqualToString:@"showAbout"]){
+         AboutViewController *aboutController = (AboutViewController *)((UINavigationController *)segue.destinationViewController).viewControllers[0];
+         aboutController.statusBar = self.statusBar;
+     }
+ }
+ 
 
 @end

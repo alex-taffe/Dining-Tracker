@@ -32,7 +32,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="350" height="1000"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pnk-Tj-CcU">
-                                        <rect key="frame" x="0.0" y="0.0" width="350" height="859.33333333333337"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="350" height="915"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dining Dollars Tracker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xDY-Cr-JwB">
                                                 <rect key="frame" x="81" y="94" width="188" height="21"/>
@@ -220,12 +220,6 @@ Spent</string>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Plan per day:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tCf-Sn-C0p">
-                                                <rect key="frame" x="16" y="816.33333333333337" width="104" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                <color key="textColor" red="0.95294117649999999" green="0.43137254899999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Days Off" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PId-E6-uAf">
                                                 <rect key="frame" x="16" y="213.33333333333334" width="84" height="26"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="29"/>
@@ -242,6 +236,20 @@ Spent</string>
                                                     <action selector="editDaysOff:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ws3-6w-c9P"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cia-NN-BmB">
+                                                <rect key="frame" x="150.66666666666666" y="859" width="49" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <state key="normal" title="About"/>
+                                                <connections>
+                                                    <segue destination="fSc-G4-iNZ" kind="presentation" identifier="showAbout" id="xsv-qk-dtZ"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Plan per day:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tCf-Sn-C0p">
+                                                <rect key="frame" x="16" y="816" width="104" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                <color key="textColor" red="0.95294117649999999" green="0.43137254899999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -249,6 +257,7 @@ Spent</string>
                                             <constraint firstItem="mdn-aC-BmQ" firstAttribute="trailing" secondItem="MyN-9U-26G" secondAttribute="trailing" id="1RR-ot-boa"/>
                                             <constraint firstItem="IIn-1q-XGV" firstAttribute="centerX" secondItem="fIW-tg-s3Q" secondAttribute="centerX" id="1eu-dm-kVS"/>
                                             <constraint firstAttribute="trailing" secondItem="LuZ-6h-aOm" secondAttribute="trailing" constant="250" id="36D-SH-A4m"/>
+                                            <constraint firstItem="Cia-NN-BmB" firstAttribute="centerX" secondItem="Pnk-Tj-CcU" secondAttribute="centerX" id="3TV-U4-j5J"/>
                                             <constraint firstItem="tCf-Sn-C0p" firstAttribute="leading" secondItem="J0Q-mq-pLP" secondAttribute="leading" id="3q9-bI-W0P"/>
                                             <constraint firstItem="cxk-da-ymh" firstAttribute="leading" secondItem="K0b-iW-eua" secondAttribute="leading" id="4Fq-5N-QBu"/>
                                             <constraint firstItem="xDY-Cr-JwB" firstAttribute="top" secondItem="OXT-BW-AML" secondAttribute="bottom" constant="15" id="5mU-QR-wuj"/>
@@ -256,6 +265,7 @@ Spent</string>
                                             <constraint firstItem="lRJ-sB-oeh" firstAttribute="centerY" secondItem="PId-E6-uAf" secondAttribute="centerY" id="72p-vx-mMj"/>
                                             <constraint firstItem="LuZ-6h-aOm" firstAttribute="height" secondItem="Yp6-lh-VRE" secondAttribute="height" constant="20" id="Bgx-Kc-rtP"/>
                                             <constraint firstItem="ec9-TR-Tcu" firstAttribute="top" secondItem="K0b-iW-eua" secondAttribute="top" id="Br7-1e-6GK"/>
+                                            <constraint firstAttribute="bottom" secondItem="Cia-NN-BmB" secondAttribute="bottom" constant="22" id="CAx-ya-uL3"/>
                                             <constraint firstItem="cxk-da-ymh" firstAttribute="top" secondItem="K0b-iW-eua" secondAttribute="bottom" constant="22" id="CSM-tr-qFg"/>
                                             <constraint firstItem="MyN-9U-26G" firstAttribute="top" secondItem="J0Q-mq-pLP" secondAttribute="top" id="CYh-b4-6tT"/>
                                             <constraint firstItem="MyN-9U-26G" firstAttribute="trailing" secondItem="45B-ng-GfB" secondAttribute="trailing" id="CpB-a0-07P"/>
@@ -274,6 +284,7 @@ Spent</string>
                                             <constraint firstItem="mdn-aC-BmQ" firstAttribute="top" secondItem="tCf-Sn-C0p" secondAttribute="top" id="RfA-1w-EhN"/>
                                             <constraint firstItem="fZ9-lj-9Qc" firstAttribute="trailing" secondItem="ec9-TR-Tcu" secondAttribute="trailing" id="RhZ-pY-Thu"/>
                                             <constraint firstItem="1CL-2d-7YI" firstAttribute="trailing" secondItem="LuZ-6h-aOm" secondAttribute="trailing" id="TKp-xI-04g"/>
+                                            <constraint firstItem="Cia-NN-BmB" firstAttribute="top" secondItem="tCf-Sn-C0p" secondAttribute="bottom" constant="22" id="TiR-Og-7e8"/>
                                             <constraint firstItem="K0b-iW-eua" firstAttribute="leading" secondItem="fIW-tg-s3Q" secondAttribute="leading" id="Tmz-G0-Qd6"/>
                                             <constraint firstItem="tCf-Sn-C0p" firstAttribute="top" secondItem="J0Q-mq-pLP" secondAttribute="bottom" constant="22" id="UDG-Hc-Z6l"/>
                                             <constraint firstItem="45B-ng-GfB" firstAttribute="top" secondItem="Mfv-Er-Pbn" secondAttribute="top" id="VCL-DQ-9o0"/>
@@ -284,7 +295,6 @@ Spent</string>
                                             <constraint firstItem="J0Q-mq-pLP" firstAttribute="top" secondItem="Mfv-Er-Pbn" secondAttribute="bottom" constant="22" id="gkn-ip-KbV"/>
                                             <constraint firstItem="Yp6-lh-VRE" firstAttribute="leading" secondItem="Pnk-Tj-CcU" secondAttribute="leading" constant="250" id="h5J-Vj-t26"/>
                                             <constraint firstItem="K0b-iW-eua" firstAttribute="top" secondItem="gVp-1M-Qq5" secondAttribute="bottom" constant="75" id="j85-DW-Dzj"/>
-                                            <constraint firstAttribute="bottom" secondItem="tCf-Sn-C0p" secondAttribute="bottom" constant="22" id="j9q-cW-yoy"/>
                                             <constraint firstItem="lRJ-sB-oeh" firstAttribute="width" secondItem="LuZ-6h-aOm" secondAttribute="width" id="nrT-I3-8Jp"/>
                                             <constraint firstAttribute="trailing" secondItem="LuZ-6h-aOm" secondAttribute="trailing" constant="16" id="oD6-4o-uzn"/>
                                             <constraint firstItem="p2U-KN-cSD" firstAttribute="trailing" secondItem="fZ9-lj-9Qc" secondAttribute="trailing" id="qB9-5K-Zvh"/>
@@ -345,6 +355,7 @@ Spent</string>
                     </view>
                     <size key="freeformSize" width="350" height="1000"/>
                     <connections>
+                        <outlet property="aboutButton" destination="Cia-NN-BmB" id="x48-Cj-9iP"/>
                         <outlet property="daysOffButton" destination="lRJ-sB-oeh" id="j80-L5-NMQ"/>
                         <outlet property="editButton" destination="LuZ-6h-aOm" id="kJX-eo-AKt"/>
                         <outlet property="leftPerDayLabel" destination="MyN-9U-26G" id="bmf-Dx-5g5"/>
@@ -481,6 +492,74 @@ Spent</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kq9-4s-Wyk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="756.52173913043487" y="-75"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="bn4-hv-wBn">
+            <objects>
+                <navigationController id="fSc-G4-iNZ" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="toa-AG-8dO">
+                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="bhX-nt-yBv" kind="relationship" relationship="rootViewController" id="TyW-xx-2GH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NXJ-GR-TgR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="757" y="642"/>
+        </scene>
+        <!--About-->
+        <scene sceneID="8gM-Sb-iMQ">
+            <objects>
+                <viewController id="bhX-nt-yBv" customClass="AboutViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JLi-HC-HW4"/>
+                        <viewControllerLayoutGuide type="bottom" id="3gX-q1-ZqY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XkT-fb-ZCV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="ti6-ux-6mI">
+                                <rect key="frame" x="150" y="86" width="114" height="34"/>
+                                <color key="tintColor" red="0.95294117649999999" green="0.43137254899999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="114" id="7hi-A2-UJw"/>
+                                    <constraint firstAttribute="height" constant="34" id="fjL-ku-7ab"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dining Dollars Tracker" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fBK-2X-8hn">
+                                <rect key="frame" x="10" y="135" width="394" height="21"/>
+                                <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ti6-ux-6mI" firstAttribute="top" secondItem="JLi-HC-HW4" secondAttribute="bottom" constant="22" id="eML-bG-LI2"/>
+                            <constraint firstItem="fBK-2X-8hn" firstAttribute="leading" secondItem="XkT-fb-ZCV" secondAttribute="leading" constant="10" id="fem-Hb-P54"/>
+                            <constraint firstAttribute="trailing" secondItem="fBK-2X-8hn" secondAttribute="trailing" constant="10" id="pDO-t4-6rA"/>
+                            <constraint firstItem="ti6-ux-6mI" firstAttribute="centerX" secondItem="XkT-fb-ZCV" secondAttribute="centerX" id="rli-un-jJR"/>
+                            <constraint firstItem="fBK-2X-8hn" firstAttribute="top" secondItem="ti6-ux-6mI" secondAttribute="bottom" constant="15" id="tu0-v5-XcU"/>
+                            <constraint firstItem="fBK-2X-8hn" firstAttribute="centerX" secondItem="XkT-fb-ZCV" secondAttribute="centerX" id="vfU-02-LHr"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="About" id="XmB-Nj-Kvl">
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="1Qa-g8-4Xf">
+                            <connections>
+                                <action selector="donePressed:" destination="bhX-nt-yBv" id="VJg-7y-5dI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="titleLabel" destination="fBK-2X-8hn" id="prE-bj-2Rm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XUH-rL-fRv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1516" y="642"/>
         </scene>
     </scenes>
     <resources>

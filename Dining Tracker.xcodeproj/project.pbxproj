@@ -11,6 +11,7 @@
 		FA6883E01F733C2E000A26F6 /* PriceGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6883DF1F733C2E000A26F6 /* PriceGroup.m */; };
 		FA7AD4561F740B8900CFD93A /* DiningTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC48B2E1F717A1E003462EB /* DiningTracker.m */; };
 		FAA4C2AA1F7D746100BCCB7F /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA4C2A91F7D746100BCCB7F /* CalendarViewController.m */; };
+		FABA4D521F7EC9780086D830 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FABA4D511F7EC9780086D830 /* AboutViewController.m */; };
 		FAC48B071F7178FD003462EB /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAC48B051F7178FD003462EB /* Interface.storyboard */; };
 		FAC48B091F7178FD003462EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAC48B081F7178FD003462EB /* Assets.xcassets */; };
 		FAC48B101F7178FD003462EB /* Dining Tracker Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FAC48B0F1F7178FD003462EB /* Dining Tracker Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -91,6 +92,8 @@
 		FA6883DF1F733C2E000A26F6 /* PriceGroup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PriceGroup.m; sourceTree = "<group>"; };
 		FAA4C2A81F7D746100BCCB7F /* CalendarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
 		FAA4C2A91F7D746100BCCB7F /* CalendarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
+		FABA4D501F7EC9780086D830 /* AboutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		FABA4D511F7EC9780086D830 /* AboutViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		FAC48B031F7178FD003462EB /* Dining Tracker Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dining Tracker Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAC48B061F7178FD003462EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		FAC48B081F7178FD003462EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -261,6 +264,8 @@
 				FAD028C21F68400600CA0122 /* ViewController.m */,
 				FAA4C2A81F7D746100BCCB7F /* CalendarViewController.h */,
 				FAA4C2A91F7D746100BCCB7F /* CalendarViewController.m */,
+				FABA4D501F7EC9780086D830 /* AboutViewController.h */,
+				FABA4D511F7EC9780086D830 /* AboutViewController.m */,
 				FAD028C41F68400600CA0122 /* Main.storyboard */,
 				FAD028CA1F68400600CA0122 /* Assets.xcassets */,
 				FAD028CC1F68400600CA0122 /* LaunchScreen.storyboard */,
@@ -623,6 +628,7 @@
 				FAD028C31F68400600CA0122 /* ViewController.m in Sources */,
 				FAD028C01F68400600CA0122 /* AppDelegate.m in Sources */,
 				FAC48B2F1F717A1E003462EB /* DiningTracker.m in Sources */,
+				FABA4D521F7EC9780086D830 /* AboutViewController.m in Sources */,
 				FAD028BD1F68400600CA0122 /* main.m in Sources */,
 				FAA4C2AA1F7D746100BCCB7F /* CalendarViewController.m in Sources */,
 				FAD028C91F68400600CA0122 /* Dining_Tracker.xcdatamodeld in Sources */,
