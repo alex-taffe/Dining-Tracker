@@ -6,6 +6,7 @@
 //  Copyright © 2017 Alex Taffe. All rights reserved.
 //
 
+@import SafariServices;
 #import "AboutViewController.h"
 
 @interface AboutViewController ()
@@ -51,6 +52,10 @@
 }
 - (IBAction)donePressed:(id)sender {
     [self dismissViewControllerAnimated:true completion:nil];
+}
+- (IBAction)openGitHub:(id)sender {
+    SFSafariViewController *safari = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:@"https://github.com/alex-taffe/Dining-Tracker"]];
+    [self presentViewController:safari animated:true completion:nil];
 }
 
 /*
