@@ -10,7 +10,7 @@
 @import WatchConnectivity;
 
 //Meal plan options
-typedef NS_ENUM(NSUInteger, MealPlanOption) {
+typedef NS_ENUM(NSInteger, MealPlanOption) {
     MealPlanOptionTiger20 = 325,
     MealPlanOptionTiger14 = 525,
     MealPlanOptionTiger10 = 725,
@@ -20,7 +20,8 @@ typedef NS_ENUM(NSUInteger, MealPlanOption) {
     MealPlanOptionSilver = 1000,
     MealPlanOptionBronze = 550,
     MealPlanOptionBrown = 2000,
-    MealPlanOptionUnknown = NSUIntegerMax
+    MealPlanOptionCustom = -1,
+    MealPlanOptionUnknown = NSIntegerMax
 };
 
 @protocol DiningTrackerDelegate<NSObject>
@@ -39,6 +40,7 @@ typedef NS_ENUM(NSUInteger, MealPlanOption) {
 #pragma mark: Instance methods
 -(instancetype)initWithSemesterBeginDate:(NSDate *)semesterBeginDate endDate:(NSDate *)endDate;
 -(void)updateDates;
+-(void)setCustomMealPlanValue:(double)value;
 
 #pragma mark: Instance properties
 

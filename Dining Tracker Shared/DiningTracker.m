@@ -50,6 +50,9 @@
         case 8:
             return MealPlanOptionBrown;
             break;
+        case 9:
+            return MealPlanOptionCustom;
+            break;
         default:
             return MealPlanOptionUnknown;
             break;
@@ -85,10 +88,9 @@
         case MealPlanOptionBrown:
             return 8;
             break;
-        case MealPlanOptionUnknown:
-            return (int)NSIntegerMax;
+        case MealPlanOptionCustom:
+            return 9;
             break;
-            
         default:
             return (int)NSIntegerMax;
             break;
@@ -124,6 +126,9 @@
         case MealPlanOptionBrown:
             return @"Brown";
             break;
+        case MealPlanOptionCustom:
+            return @"Custom";
+            break;
         case MealPlanOptionUnknown:
             return @"Configuration Error";
             break;
@@ -139,7 +144,7 @@
     static NSArray *_MealPlans;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _MealPlans = @[@"Tiger 20", @"Tiger 14", @"Tiger 10", @"Tiger 5", @"Orange", @"Gold", @"Silver", @"Bronze", @"Brown"];
+        _MealPlans = @[@"Tiger 20", @"Tiger 14", @"Tiger 10", @"Tiger 5", @"Orange", @"Gold", @"Silver", @"Bronze", @"Brown", @"Custom"];
     });
     return _MealPlans;
     
@@ -163,6 +168,10 @@
     //make sure the value variable exists and if not, set it
     if([self.preferences objectForKey:@"value"] == nil)
         [self.preferences setDouble:self.mealPlanValue forKey:@"value"];
+    
+    //make sure the custom plan variable exists and if not, set it
+    if([self.preferences objectForKey:@"customValue"] == nil)
+        [self.preferences setDouble:0 forKey:@"customValue"];
     
     //see if the days off have been set yet. If not, init with default values
     if([self.preferences objectForKey:@"daysOff"] == nil){
@@ -210,6 +219,9 @@
     if([self.delegate respondsToSelector:@selector(updateLabels)])
         [self.delegate updateLabels];
 }
+-(void)setCustomMealPlanValue:(double)value{
+    [self.preferences setDouble:value forKey:@"customValue"];
+}
 
 #pragma mark: Instance properties
 
@@ -237,7 +249,10 @@
 }
 
 -(double)mealPlanValue{
-    return self.currentMealPlan;
+    if(self.currentMealPlan == MealPlanOptionCustom)
+        return [self.preferences doubleForKey:@"customValue"];
+    else
+        return self.currentMealPlan;
 }
 
 -(double)totalSpent{

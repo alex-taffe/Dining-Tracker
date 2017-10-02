@@ -66,7 +66,7 @@
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="OXT-BW-AML">
                                                 <rect key="frame" x="118" y="45" width="114" height="34"/>
-                                                <color key="tintColor" red="0.95294117649999999" green="0.43137254899999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="114" id="Cjw-5I-JnU"/>
                                                     <constraint firstAttribute="height" constant="34" id="Frg-sv-TFP"/>

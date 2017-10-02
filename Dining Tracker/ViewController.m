@@ -93,9 +93,9 @@
     UIToolbar* inputToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
     inputToolbar.barStyle = UIBarStyleDefault;
     inputToolbar.items = [NSArray arrayWithObjects:
-                           [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-                           [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(dismissKeyboard)],
-                           nil];
+                          [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+                          [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(dismissKeyboard)],
+                          nil];
     [inputToolbar sizeToFit];
     self.moneyLeftField.inputAccessoryView = inputToolbar;
     
@@ -108,7 +108,7 @@
     [[MZFormSheetBackgroundWindow appearance] setBlurRadius:0.5];
     [[MZFormSheetBackgroundWindow appearance] setBlurEffectStyle:UIBlurEffectStyleDark];
     
-
+    
 }
 
 //this makes the app update when it appears
@@ -163,8 +163,13 @@
         [self presentViewController:alert animated:true completion:nil];
     }
     
+    NSLog(@"Plan value: %f",self.tracker.mealPlanValue);
+    
     //make sure the user hasn't entered a value that is too high
-    if(self.tracker.diningBalance > self.tracker.mealPlanValue){
+    if(self.tracker.currentMealPlan == MealPlanOptionCustom){
+        
+    }
+    else if(self.tracker.diningBalance * 2 > self.tracker.mealPlanValue){
         //reset all values
         self.moneyLeftField.text = [[NSString alloc] initWithFormat:@"$%0.2f", 2 * self.tracker.mealPlanValue];
         //alert the user
@@ -180,7 +185,7 @@
     //update our circle graphs
     [self.yearProgress setProgress:self.tracker.semesterPercent animated:true];
     [self.planProgress setProgress:self.tracker.planProgressValue animated:true];
-
+    
     if(self.tracker.totalSpent < 0)
         self.totalSpentLabel.text = [[NSString alloc] initWithFormat:@"$0.00"]; //update total spent
     else
@@ -212,7 +217,11 @@
 
 // return the plan string for each individual row
 - (NSString *)czpickerView:(CZPickerView *)pickerView titleForRow:(NSInteger)row{
-    return [[NSString alloc] initWithFormat:@"%@ - $%i", DiningTracker.MealPlans[row], (int)[DiningTracker getMealPlanFromIndex:(int)row]];
+    NSString *title = DiningTracker.MealPlans[row];
+    if([title isEqualToString:@"Custom"])
+        return title;
+    else
+        return [[NSString alloc] initWithFormat:@"%@ - $%i", title , (int)[DiningTracker getMealPlanFromIndex:(int)row]];
 }
 
 //called when a user has made a seleciton
@@ -221,6 +230,24 @@
     
     //update current plan and store on the disk
     self.tracker.currentMealPlan = [DiningTracker getMealPlanFromIndex:(int)row];
+    
+    if([(NSNumber *)pickerView.selectedRows[0] intValue] == 9){
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Custom Meal Plan" message:@"Please enter the value of your meal plan" preferredStyle:UIAlertControllerStyleAlert];
+        [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+            textField.placeholder = @"$";
+            textField.keyboardType = UIKeyboardTypeDecimalPad;
+            textField.delegate = self;
+            textField.text = @"$";
+        }];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            NSArray *textfields = alert.textFields;
+            UITextField *valueField = textfields[0];
+            [self.tracker setCustomMealPlanValue:[[valueField.text stringByReplacingOccurrencesOfString:@"$" withString:@""] doubleValue]];
+            [self updateLabels];
+        }];
+        [alert addAction:action];
+        [self presentViewController:alert animated:true completion:nil];
+    }
     
     
     //update our UI
@@ -257,7 +284,7 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     //update stored value on disk
     self.tracker.diningBalance = [[textField.text stringByReplacingOccurrencesOfString:@"$" withString:@""] doubleValue]; //we have to remove the $ to get a clean double
-    //hide the keyboard
+                                                                                                                          //hide the keyboard
     [textField resignFirstResponder];
     //update our UI
     [self updateLabels];
@@ -269,7 +296,7 @@
 {
     //update stored value on disk
     self.tracker.diningBalance = [[self.moneyLeftField.text stringByReplacingOccurrencesOfString:@"$" withString:@""] doubleValue]; //we have to remove the $ to get a clean double
-    //hide the keyboard
+                                                                                                                                    //hide the keyboard
     [self.moneyLeftField resignFirstResponder];
     //update our UI
     [self updateLabels];
@@ -289,14 +316,14 @@
         newText = string;
     }
     else{
-       newText = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        newText = [textField.text stringByReplacingCharactersInRange:range withString:string];
     }
-
+    
     
     // allow backspace
     if (!string.length && textField.text.length > 1)
         return true;
-
+    
     //characters allowed
     NSCharacterSet *numbersSet = [NSCharacterSet characterSetWithCharactersInString:@"$0123456789."];
     //actual characters
@@ -326,17 +353,17 @@
 }
 
 
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-     // Get the new view controller using [segue destinationViewController].
-     // Pass the selected object to the new view controller.
-     if([segue.identifier isEqualToString:@"showAbout"]){
-         AboutViewController *aboutController = (AboutViewController *)((UINavigationController *)segue.destinationViewController).viewControllers[0];
-         aboutController.statusBar = self.statusBar;
-     }
- }
- 
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    if([segue.identifier isEqualToString:@"showAbout"]){
+        AboutViewController *aboutController = (AboutViewController *)((UINavigationController *)segue.destinationViewController).viewControllers[0];
+        aboutController.statusBar = self.statusBar;
+    }
+}
+
 
 @end
