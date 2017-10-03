@@ -5,15 +5,23 @@
 //  Created by Alex Taffe on 9/12/17.
 //  Copyright © 2017 Alex Taffe. All rights reserved.
 //
-
+#import "DiningTracker.h"
+#import "AppDelegate.h"
 #import "ViewController.h"
+#import "CalendarViewController.h"
+#import "AboutViewController.h"
+
 @import CZPicker;
 @import CircleProgressBar;
+@import WatchConnectivity;
+@import MZFormSheetController;
 
-@interface ViewController () <CZPickerViewDataSource, CZPickerViewDelegate, UITextFieldDelegate>
+@interface ViewController () <CZPickerViewDataSource, CZPickerViewDelegate, UITextFieldDelegate, DiningTrackerDelegate>
 //storyboard UI
 @property (strong, nonatomic) IBOutlet UILabel *planLabel;
 @property (strong, nonatomic) IBOutlet UIButton *editButton;
+@property (strong, nonatomic) IBOutlet UIButton *daysOffButton;
+@property (strong, nonatomic) IBOutlet UIButton *aboutButton;
 @property (strong, nonatomic) IBOutlet UITextField *moneyLeftField;
 @property (strong, nonatomic) IBOutlet CircleProgressBar *yearProgress;
 @property (strong, nonatomic) IBOutlet CircleProgressBar *planProgress;
@@ -29,13 +37,8 @@
 @property (strong, nonatomic) CZPickerView *picker;
 @property (strong, nonatomic) UIView *statusBar;
 //static data
-@property (strong, nonatomic) NSArray<NSString *> *plans;
-@property (strong, nonatomic) NSArray<NSNumber *> *prices;
-@property (nonatomic, strong) NSUserDefaults *preferences;
+@property (strong, nonatomic) DiningTracker *tracker;
 //instance data
-@property (nonatomic) long totalDays;
-@property (nonatomic) long currentDays;
-@property (nonatomic) int currentPlanSelected;
 @property (nonatomic) BOOL hasDisplayedPickerOnce;
 @end
 
@@ -45,23 +48,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     //setup our instance data that is going to be give or take static
-    self.plans = @[@"Tiger 20 - $325", @"Tiger 14 - $525", @"Tiger 10 - $725", @"Tiger 5 - $1325", @"Orange - $2762", @"Gold - $1400", @"Silver - $1000", @"Bronze - $550", @"Brown - $2000"];
-    self.prices = @[@325, @525, @725, @1325, @2762, @1400, @1000, @550, @2000];
-    self.preferences = [NSUserDefaults standardUserDefaults];
+    self.tracker = ((AppDelegate *)[[UIApplication sharedApplication] delegate]).tracker;
+    self.tracker.delegate = self;
     
-    //make sure the plan variable exists and if not, set it
-    if([self.preferences objectForKey:@"plan"] == nil)
-        [self.preferences setInteger:0 forKey:@"plan"];
-    
-    //recover the currently selected plan
-    self.currentPlanSelected = (int)[self.preferences integerForKey:@"plan"];
-    
-    //make sure the value variable exists and if not, set it
-    if([self.preferences objectForKey:@"value"] == nil)
-        [self.preferences setDouble:[self.prices[self.currentPlanSelected] doubleValue] forKey:@"value"];
     
     //recover the previous money left value
-    self.moneyLeftField.text = [[NSString alloc] initWithFormat:@"$%0.2f", [self.preferences doubleForKey:@"value"]];
+    self.moneyLeftField.text = [[NSString alloc] initWithFormat:@"$%0.2f", self.tracker.diningBalance];
     
     
     //initialize the meal plan picker
@@ -74,7 +66,7 @@
     self.picker.needFooterView = true; //add the footer
     self.picker.delegate = self; //set the delegate
     self.picker.dataSource = self; //set the datasource
-    [self.picker setSelectedRows:@[[NSNumber numberWithInt:self.currentPlanSelected]]]; //recover the currently selected plan
+    [self.picker setSelectedRows:@[[NSNumber numberWithInt:[DiningTracker indexOfMealPlan:self.tracker.currentMealPlan]]]]; //recover the currently selected plan
     
     //This just makes the status bar white so that it doesn't look awful when scrolling
     self.statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
@@ -86,6 +78,14 @@
     self.editButton.tintColor = UIColor.whiteColor;
     self.editButton.layer.cornerRadius = 5;
     
+    //add some style to the days off button
+    self.daysOffButton.backgroundColor = [UIColor colorWithRed:0.95 green:0.43 blue:0.13 alpha:1.00];
+    self.daysOffButton.tintColor = UIColor.whiteColor;
+    self.daysOffButton.layer.cornerRadius = 5;
+    
+    //about button styling
+    self.aboutButton.tintColor = [UIColor colorWithRed:0.95 green:0.43 blue:0.13 alpha:1.00];
+    
     //set the money left delegate
     self.moneyLeftField.delegate = self;
     
@@ -93,29 +93,51 @@
     UIToolbar* inputToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
     inputToolbar.barStyle = UIBarStyleDefault;
     inputToolbar.items = [NSArray arrayWithObjects:
-                           [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-                           [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(dismissKeyboard)],
-                           nil];
+                          [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+                          [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(dismissKeyboard)],
+                          nil];
     [inputToolbar sizeToFit];
     self.moneyLeftField.inputAccessoryView = inputToolbar;
     
     //add a gesture to make tapping outside the keyboard dismiss it
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
-
+    
+    [[MZFormSheetBackgroundWindow appearance] setBackgroundBlurEffect:YES];
+    [[MZFormSheetBackgroundWindow appearance] setAlpha:0.5];
+    [[MZFormSheetBackgroundWindow appearance] setBlurRadius:0.5];
+    [[MZFormSheetBackgroundWindow appearance] setBlurEffectStyle:UIBlurEffectStyleDark];
+    
+    
 }
 
 //this makes the app update when it appears
 //so that even if it stays open in memory for a day
 //it doesn't matter. Also called at first open
 -(void)viewWillAppear:(BOOL)animated{
-    [self setupDates];
-    [self updateLabels];
+    [self.tracker updateDates];
+    //[self updateLabels];
 }
 
 //called when the user wants to edit their meal plan selection
 - (IBAction)editMealPlan:(id)sender {
     [self.picker show];
+}
+- (IBAction)editDaysOff:(id)sender {
+    CalendarViewController *calendar = (CalendarViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"calendarController"];
+    
+    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:calendar];
+    formSheet.transitionStyle = MZFormSheetTransitionStyleSlideFromBottom;
+    formSheet.presentedFormSheetSize = CGSizeMake(300, 436);
+    formSheet.cornerRadius = 6.0;
+    
+    
+    [UIView animateWithDuration:0.0 animations:^{
+        self.statusBar.backgroundColor = UIColor.clearColor;
+    }];
+    [self mz_presentFormSheetController:formSheet animated:true completionHandler:^(MZFormSheetController * _Nonnull formSheetController) {
+        NSLog(@"done");
+    }];
 }
 
 
@@ -128,59 +150,11 @@
 
 #pragma mark - Utility
 
-//modify the instance data with the current date information
--(void)setupDates{
-    //start and end of the semester
-    NSString *start = @"2017-08-27";
-    NSString *semesterEnd = @"2017-12-19";
-    
-    //set up a date formatter
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd"];
-    
-    //get date objects of the semester start, end, and the current date
-    NSDate *startDate = [formatter dateFromString:start];
-    NSDate *currentDate = [NSDate date];
-    NSDate *semesterEndDate = [formatter dateFromString:semesterEnd];
-    
-    //set up our calendar
-    NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    
-    //get the components
-    NSDateComponents *currentDateComponents = [gregorianCalendar components:NSCalendarUnitDay
-                                                               fromDate:startDate
-                                                                 toDate:currentDate
-                                                                options:0];
-    NSDateComponents *totalComponents = [gregorianCalendar components:NSCalendarUnitDay
-                                                             fromDate:startDate
-                                                               toDate:semesterEndDate
-                                                              options:0];
-    
-    //set our instance data
-    self.totalDays = [totalComponents day];
-    self.currentDays = [currentDateComponents day];
-}
-
 
 //update the UI
 -(void)updateLabels{
-    //all the variables we need
-    double percent = (double)self.currentDays / (double)self.totalDays; //percent of the semester we're into
-    double valueLeft = [[self.moneyLeftField.text stringByReplacingOccurrencesOfString:@"$" withString:@""] doubleValue]; //get the value left the user has. We have to remove the $ to get a proper double to return
-    int planValue = [self.prices[self.currentPlanSelected] intValue]; //get the value of the currently selected plan
-    double totalSpent = planValue - valueLeft; //how much they've spent
-    double shouldHaveSpent = planValue * percent; //how much they should've spent
-    double planProgressValue = totalSpent / planValue; //percentage of what they've spent
-    double overSpent = shouldHaveSpent - totalSpent; //how much they have overspent by
-    long daysRemaining = self.totalDays - self.currentDays; //how many days left in the semester
-    
-    
     //make sure that the value is not negative
-    if(valueLeft < 0){
-        //reset all values
-        valueLeft = 0;
-        totalSpent = planValue;
-        overSpent = shouldHaveSpent - totalSpent;
+    if(self.tracker.diningBalance < 0){
         self.moneyLeftField.text = @"$0.00";
         //alert the user
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"You can not have a negative dining balance" preferredStyle:UIAlertControllerStyleAlert];
@@ -190,43 +164,45 @@
     }
     
     //make sure the user hasn't entered a value that is too high
-    if(valueLeft > planValue){
+    if(self.tracker.currentMealPlan == MealPlanOptionCustom){
+        
+    }
+    else if(self.tracker.diningBalance > self.tracker.mealPlanValue * 2){
         //reset all values
-        valueLeft = planValue;
-        totalSpent = 0;
-        overSpent = shouldHaveSpent - totalSpent;
-        self.moneyLeftField.text = [[NSString alloc] initWithFormat:@"$%0.2f", (double)planValue];
+        self.moneyLeftField.text = [[NSString alloc] initWithFormat:@"$%0.2f", 2 * self.tracker.mealPlanValue];
         //alert the user
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"You can not have a value that exceeds your dining plan. Change your plan or reduce the amount." preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"You can not have a value that exceeds twice your dining plan. Change your plan or reduce the amount." preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *action = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:action];
         [self presentViewController:alert animated:true completion:nil];
     }
     
     //update the label for the plan label but chop off the value
-    self.planLabel.text = [self.plans[self.currentPlanSelected] componentsSeparatedByString:@" - "][0];
+    self.planLabel.text = [DiningTracker getTitleForMealPlan:self.tracker.currentMealPlan];
     
     //update our circle graphs
-    [self.yearProgress setProgress:percent animated:true];
-    [self.planProgress setProgress:(CGFloat)planProgressValue animated:true];
-
+    [self.yearProgress setProgress:self.tracker.semesterPercent animated:true];
+    [self.planProgress setProgress:self.tracker.planProgressValue animated:true];
     
-    self.totalSpentLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", totalSpent]; //update total spent
-    self.shouldHaveSpentLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", shouldHaveSpent]; //should have spent
-    self.shouldHaveLeftLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", planValue - shouldHaveSpent]; //should have left
+    if(self.tracker.totalSpent < 0)
+        self.totalSpentLabel.text = [[NSString alloc] initWithFormat:@"$0.00"]; //update total spent
+    else
+        self.totalSpentLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", self.tracker.totalSpent ]; //update total spent
+    self.shouldHaveSpentLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", self.tracker.shouldHaveSpent]; //should have spent
+    self.shouldHaveLeftLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", self.tracker.shouldHaveLeft]; //should have left
     
     //check to see if the user has over or under spent and set accordingly
-    if(overSpent > 0){
+    if(self.tracker.overSpent > 0){
         self.overSpentTitleLabel.text = @"Underspent by:";
-        self.overSpentLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", overSpent];
+        self.overSpentLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", self.tracker.overSpent];
     }
     else{
         self.overSpentTitleLabel.text = @"Overspent by:";
-        self.overSpentLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", -overSpent];
+        self.overSpentLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", -self.tracker.overSpent];
     }
     
-    self.leftPerDayLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", (double)valueLeft / (double)daysRemaining]; //how much they actually have left per day
-    self.planPerDayLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", (double)planValue / (double)self.totalDays]; // how much the plan says to spend per day
+    self.leftPerDayLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", self.tracker.leftPerDay]; //how much they actually have left per day
+    self.planPerDayLabel.text = [[NSString alloc] initWithFormat:@"$%0.2f", self.tracker.planPerDay]; // how much the plan says to spend per day
 }
 
 
@@ -234,12 +210,16 @@
 
 // The number of plans the user can pick from
 - (NSInteger)numberOfRowsInPickerView:(CZPickerView *)pickerView{
-    return self.plans.count;
+    return DiningTracker.MealPlans.count;
 }
 
 // return the plan string for each individual row
 - (NSString *)czpickerView:(CZPickerView *)pickerView titleForRow:(NSInteger)row{
-    return self.plans[row];
+    NSString *title = DiningTracker.MealPlans[row];
+    if([title isEqualToString:@"Custom"])
+        return title;
+    else
+        return [[NSString alloc] initWithFormat:@"%@ - $%i", title , (int)[DiningTracker getMealPlanFromIndex:(int)row]];
 }
 
 //called when a user has made a seleciton
@@ -247,8 +227,26 @@
     NSLog(@"Picked");
     
     //update current plan and store on the disk
-    self.currentPlanSelected = (int)row;
-    [self.preferences setInteger:(int)row forKey:@"plan"];
+    self.tracker.currentMealPlan = [DiningTracker getMealPlanFromIndex:(int)row];
+    
+    if([(NSNumber *)pickerView.selectedRows[0] intValue] == 9){
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Custom Meal Plan" message:@"Please enter the value of your meal plan" preferredStyle:UIAlertControllerStyleAlert];
+        [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+            textField.placeholder = @"$";
+            textField.keyboardType = UIKeyboardTypeDecimalPad;
+            textField.delegate = self;
+            textField.text = @"$";
+        }];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            NSArray *textfields = alert.textFields;
+            UITextField *valueField = textfields[0];
+            [self.tracker setCustomMealPlanValue:[[valueField.text stringByReplacingOccurrencesOfString:@"$" withString:@""] doubleValue]];
+            [self updateLabels];
+        }];
+        [alert addAction:action];
+        [self presentViewController:alert animated:true completion:nil];
+    }
+    
     
     //update our UI
     [self updateLabels];
@@ -276,15 +274,15 @@
 - (void)czpickerViewDidDismiss:(CZPickerView *)pickerView{
     if(pickerView.selectedRows.count == 0){
         NSLog(@"Morons, you have to keep something selected. Reverting");
-        [self.picker setSelectedRows:@[[NSNumber numberWithInt:self.currentPlanSelected]]];
+        [self.picker setSelectedRows:@[[NSNumber numberWithInt:[DiningTracker indexOfMealPlan:self.tracker.currentMealPlan]]]];
     }
 }
 #pragma mark - Text field
 //called when return is pressed on the keyboard (not currently used)
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     //update stored value on disk
-    [self.preferences setDouble:[[textField.text stringByReplacingOccurrencesOfString:@"$" withString:@""] doubleValue] forKey:@"value"]; //we have to remove the $ to get a clean double
-    //hide the keyboard
+    self.tracker.diningBalance = [[textField.text stringByReplacingOccurrencesOfString:@"$" withString:@""] doubleValue]; //we have to remove the $ to get a clean double
+                                                                                                                          //hide the keyboard
     [textField resignFirstResponder];
     //update our UI
     [self updateLabels];
@@ -295,8 +293,8 @@
 -(void)dismissKeyboard
 {
     //update stored value on disk
-    [self.preferences setDouble:[[self.moneyLeftField.text stringByReplacingOccurrencesOfString:@"$" withString:@""] doubleValue] forKey:@"value"]; //we have to remove the $ to get a clean double
-    //hide the keyboard
+    self.tracker.diningBalance = [[self.moneyLeftField.text stringByReplacingOccurrencesOfString:@"$" withString:@""] doubleValue]; //we have to remove the $ to get a clean double
+                                                                                                                                    //hide the keyboard
     [self.moneyLeftField resignFirstResponder];
     //update our UI
     [self updateLabels];
@@ -310,15 +308,24 @@
 
 //called every time the user tries to edit the value remaining
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    NSString *newText = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    NSString *newText;
+    if([string containsString:@"$"]){
+        [textField setText:@""];
+        newText = string;
+    }
+    else{
+        newText = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    }
+    
+    
     // allow backspace
     if (!string.length && textField.text.length > 1)
         return true;
-
+    
     //characters allowed
     NSCharacterSet *numbersSet = [NSCharacterSet characterSetWithCharactersInString:@"$0123456789."];
     //actual characters
-    NSCharacterSet *characterSetFromTextField = [NSCharacterSet characterSetWithCharactersInString:textField.text];
+    NSCharacterSet *characterSetFromTextField = [NSCharacterSet characterSetWithCharactersInString:string];
     
     //only let allowed characters occur
     if(![numbersSet isSupersetOfSet:characterSetFromTextField])
@@ -342,5 +349,19 @@
     // Default:
     return true;
 }
+
+
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    if([segue.identifier isEqualToString:@"showAbout"]){
+        AboutViewController *aboutController = (AboutViewController *)((UINavigationController *)segue.destinationViewController).viewControllers[0];
+        aboutController.statusBar = self.statusBar;
+    }
+}
+
 
 @end
