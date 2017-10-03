@@ -16,6 +16,7 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSDictionary<NSString *, NSString *> *openSourceLibraries;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *tableHeightConstraint;
+@property (strong, nonatomic) IBOutlet UILabel *copyrightLabel;
 @property (nonatomic) BOOL swapped;
 @end
 
@@ -48,6 +49,8 @@
     self.tableView.estimatedRowHeight = 44;
     
     self.tableHeightConstraint.constant = self.openSourceLibraries.count * 44;
+    
+    self.copyrightLabel.hidden = true;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
