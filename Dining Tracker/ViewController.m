@@ -163,13 +163,11 @@
         [self presentViewController:alert animated:true completion:nil];
     }
     
-    NSLog(@"Plan value: %f",self.tracker.mealPlanValue);
-    
     //make sure the user hasn't entered a value that is too high
     if(self.tracker.currentMealPlan == MealPlanOptionCustom){
         
     }
-    else if(self.tracker.diningBalance * 2 > self.tracker.mealPlanValue){
+    else if(self.tracker.diningBalance > self.tracker.mealPlanValue * 2){
         //reset all values
         self.moneyLeftField.text = [[NSString alloc] initWithFormat:@"$%0.2f", 2 * self.tracker.mealPlanValue];
         //alert the user

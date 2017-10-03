@@ -12,6 +12,7 @@
 @interface AboutViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) UIColor *currentStatusBarColor;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+@property (strong, nonatomic) IBOutlet UIButton *githubLabel;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSDictionary<NSString *, NSString *> *openSourceLibraries;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *tableHeightConstraint;
@@ -28,6 +29,7 @@
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: UIColor.whiteColor};
     self.titleLabel.text = [[NSString alloc] initWithFormat:@"%@ %@(%@)", self.titleLabel.text, [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"], [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]];
     self.titleLabel.textColor = [UIColor colorWithRed:0.95 green:0.43 blue:0.13 alpha:1.00];
+    self.githubLabel.tintColor = [UIColor colorWithRed:0.95 green:0.43 blue:0.13 alpha:1.00];
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -93,6 +95,16 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"openSourceRow"];
     cell.textLabel.text = [[self.openSourceLibraries allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)][indexPath.row];
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    NSURL *url = [NSURL URLWithString:self.openSourceLibraries[cell.textLabel.text]];
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:true];
+    SFSafariViewController *safari = [[SFSafariViewController alloc] initWithURL:url];
+    [self presentViewController:safari animated:true completion:nil];
 }
 
 /*

@@ -645,6 +645,7 @@ All Rights Reserved</string>
                     </navigationItem>
                     <size key="freeformSize" width="414" height="736"/>
                     <connections>
+                        <outlet property="githubLabel" destination="qnC-Uy-io6" id="Jqu-JA-Bv2"/>
                         <outlet property="tableHeightConstraint" destination="3Pp-2t-fee" id="Oqe-Qh-2Te"/>
                         <outlet property="tableView" destination="v1O-W2-c7W" id="EBH-yU-Uuw"/>
                         <outlet property="titleLabel" destination="dEj-DK-64p" id="ncu-XO-jJA"/>
