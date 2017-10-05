@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface AboutViewController : UIViewController
+//the status bar to change the color of
 @property (strong, nonatomic) UIView *statusBar;
 @end

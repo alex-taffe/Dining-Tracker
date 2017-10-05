@@ -110,34 +110,6 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uqs-IW-Z2e" customClass="CircleProgressBar">
-                                                <rect key="frame" x="206" y="349.66666666666669" width="128" height="128"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="128" id="VU3-yb-Tf3"/>
-                                                    <constraint firstAttribute="width" secondItem="uqs-IW-Z2e" secondAttribute="height" multiplier="1:1" id="hMa-NO-8wU"/>
-                                                </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="progressBarWidth">
-                                                        <real key="value" value="17"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="startAngle">
-                                                        <real key="value" value="270"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="hintViewSpacing">
-                                                        <real key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="progressBarProgressColor">
-                                                        <color key="value" red="0.95294117649999999" green="0.43137254899999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="hintViewBackgroundColor">
-                                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="hintTextColor">
-                                                        <color key="value" cocoaTouchSystemColor="darkTextColor"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IIn-1q-XGV">
                                                 <rect key="frame" x="43.666666666666657" y="485.66666666666663" width="73" height="40.999999999999886"/>
                                                 <string key="text">Semester
@@ -250,6 +222,34 @@ Spent</string>
                                                 <color key="textColor" red="0.95294117649999999" green="0.43137254899999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uqs-IW-Z2e" customClass="CircleProgressBar">
+                                                <rect key="frame" x="206" y="349" width="128" height="128"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="128" id="VU3-yb-Tf3"/>
+                                                    <constraint firstAttribute="width" secondItem="uqs-IW-Z2e" secondAttribute="height" multiplier="1:1" id="hMa-NO-8wU"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="progressBarWidth">
+                                                        <real key="value" value="17"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="startAngle">
+                                                        <real key="value" value="270"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="hintViewSpacing">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="progressBarProgressColor">
+                                                        <color key="value" red="0.95294117649999999" green="0.43137254899999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="hintViewBackgroundColor">
+                                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="hintTextColor">
+                                                        <color key="value" cocoaTouchSystemColor="darkTextColor"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -365,10 +365,10 @@ Spent</string>
                         <outlet property="planLabel" destination="Yp6-lh-VRE" id="dE6-oL-Sjy"/>
                         <outlet property="planPerDayLabel" destination="mdn-aC-BmQ" id="7lN-Qt-yy2"/>
                         <outlet property="planProgress" destination="uqs-IW-Z2e" id="5MD-eF-MuJ"/>
+                        <outlet property="semesterProgress" destination="fIW-tg-s3Q" id="mz1-h5-8PN"/>
                         <outlet property="shouldHaveLeftLabel" destination="p2U-KN-cSD" id="Eth-Tl-T4i"/>
                         <outlet property="shouldHaveSpentLabel" destination="fZ9-lj-9Qc" id="0nx-zN-x8K"/>
                         <outlet property="totalSpentLabel" destination="ec9-TR-Tcu" id="Z1p-X1-FXj"/>
-                        <outlet property="yearProgress" destination="fIW-tg-s3Q" id="u5Q-9B-yEd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

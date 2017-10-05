@@ -18,28 +18,27 @@
 
 @interface ViewController () <CZPickerViewDataSource, CZPickerViewDelegate, UITextFieldDelegate, DiningTrackerDelegate>
 //storyboard UI
-@property (strong, nonatomic) IBOutlet UILabel *planLabel;
-@property (strong, nonatomic) IBOutlet UIButton *editButton;
-@property (strong, nonatomic) IBOutlet UIButton *daysOffButton;
-@property (strong, nonatomic) IBOutlet UIButton *aboutButton;
-@property (strong, nonatomic) IBOutlet UITextField *moneyLeftField;
-@property (strong, nonatomic) IBOutlet CircleProgressBar *yearProgress;
-@property (strong, nonatomic) IBOutlet CircleProgressBar *planProgress;
-@property (strong, nonatomic) IBOutlet UILabel *totalSpentLabel;
-@property (strong, nonatomic) IBOutlet UILabel *shouldHaveSpentLabel;
-@property (strong, nonatomic) IBOutlet UILabel *shouldHaveLeftLabel;
-@property (strong, nonatomic) IBOutlet UILabel *overSpentTitleLabel;
-@property (strong, nonatomic) IBOutlet UILabel *overSpentLabel;
-@property (strong, nonatomic) IBOutlet UILabel *leftPerDayLabel;
-@property (strong, nonatomic) IBOutlet UILabel *planPerDayLabel;
+@property (strong, nonatomic) IBOutlet UILabel *planLabel; //the label that specifies the current plan
+@property (strong, nonatomic) IBOutlet UIButton *editButton; //edits the currently selected meal plan
+@property (strong, nonatomic) IBOutlet UIButton *daysOffButton; //edits the days off
+@property (strong, nonatomic) IBOutlet UIButton *aboutButton; //launches the about page
+@property (strong, nonatomic) IBOutlet UITextField *moneyLeftField; //the input field that allows the user to specify how much money they have left
+@property (strong, nonatomic) IBOutlet CircleProgressBar *semesterProgress; //graph representing the total progress of the semester
+@property (strong, nonatomic) IBOutlet CircleProgressBar *planProgress; //graph representing how much money the user has spent from their plan
+@property (strong, nonatomic) IBOutlet UILabel *totalSpentLabel; //label showing how much the user has spent
+@property (strong, nonatomic) IBOutlet UILabel *shouldHaveSpentLabel; //label showing how much the user should have spent by this point
+@property (strong, nonatomic) IBOutlet UILabel *shouldHaveLeftLabel; //label showing how much the user should have left by this point
+@property (strong, nonatomic) IBOutlet UILabel *overSpentTitleLabel; //title label that will change between overspent and underspent
+@property (strong, nonatomic) IBOutlet UILabel *overSpentLabel; //label showing how much the user has over or underspent by
+@property (strong, nonatomic) IBOutlet UILabel *leftPerDayLabel; //label showing how much the user has left per day to stay on track
+@property (strong, nonatomic) IBOutlet UILabel *planPerDayLabel; //label showing how much the user's plan specifies per day
 
 //other UI
-@property (strong, nonatomic) CZPickerView *picker;
-@property (strong, nonatomic) UIView *statusBar;
-//static data
-@property (strong, nonatomic) DiningTracker *tracker;
+@property (strong, nonatomic) CZPickerView *picker; //picker for choosing meal plans
+@property (strong, nonatomic) UIView *statusBar; //keeps the status bar the right color depending on the view
 //instance data
-@property (nonatomic) BOOL hasDisplayedPickerOnce;
+@property (strong, nonatomic) DiningTracker *tracker; //the master tracker for the app, assigned from the app delegate
+@property (nonatomic) BOOL hasDisplayedPickerOnce; //makes sure we have displayed the picker at least once to avoid UI glitches
 @end
 
 @implementation ViewController
@@ -61,6 +60,7 @@
                                           cancelButtonTitle:@"Cancel"
                                          confirmButtonTitle:@"Ok"];
     
+    //style the picker
     self.picker.headerBackgroundColor = [UIColor colorWithRed:0.95 green:0.43 blue:0.13 alpha:1.00]; //make the header background orange
     self.picker.confirmButtonBackgroundColor = [UIColor colorWithRed:0.95 green:0.43 blue:0.13 alpha:1.00]; //confirm button background color orange
     self.picker.needFooterView = true; //add the footer
@@ -103,6 +103,7 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
     
+    //set the appearence of the popup for the day off UI
     [[MZFormSheetBackgroundWindow appearance] setBackgroundBlurEffect:YES];
     [[MZFormSheetBackgroundWindow appearance] setAlpha:0.5];
     [[MZFormSheetBackgroundWindow appearance] setBlurRadius:0.5];
@@ -123,20 +124,25 @@
 - (IBAction)editMealPlan:(id)sender {
     [self.picker show];
 }
+
+//called when the user wants to edit the days they won't be using their meal plan
 - (IBAction)editDaysOff:(id)sender {
+    //get our view controller
     CalendarViewController *calendar = (CalendarViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"calendarController"];
     
+    //create the popup
     MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:calendar];
     formSheet.transitionStyle = MZFormSheetTransitionStyleSlideFromBottom;
     formSheet.presentedFormSheetSize = CGSizeMake(300, 436);
     formSheet.cornerRadius = 6.0;
     
-    
+    //animate the status bar to the right color
     [UIView animateWithDuration:0.0 animations:^{
         self.statusBar.backgroundColor = UIColor.clearColor;
     }];
+    //present the popup
     [self mz_presentFormSheetController:formSheet animated:true completionHandler:^(MZFormSheetController * _Nonnull formSheetController) {
-        NSLog(@"done");
+        NSLog(@"Showing days off controller");
     }];
 }
 
@@ -146,11 +152,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-
 #pragma mark - Utility
-
-
 //update the UI
 -(void)updateLabels{
     //make sure that the value is not negative
@@ -163,7 +165,7 @@
         [self presentViewController:alert animated:true completion:nil];
     }
     
-    //make sure the user hasn't entered a value that is too high
+    //make sure the user hasn't entered a value that is too high for custom meal plan
     if(self.tracker.currentMealPlan == MealPlanOptionCustom){
         
     }
@@ -181,9 +183,10 @@
     self.planLabel.text = [DiningTracker getTitleForMealPlan:self.tracker.currentMealPlan];
     
     //update our circle graphs
-    [self.yearProgress setProgress:self.tracker.semesterPercent animated:true];
+    [self.semesterProgress setProgress:self.tracker.semesterPercent animated:true];
     [self.planProgress setProgress:self.tracker.planProgressValue animated:true];
     
+    //create effective mins and maxes
     if(self.tracker.totalSpent < 0)
         self.totalSpentLabel.text = [[NSString alloc] initWithFormat:@"$0.00"]; //update total spent
     else
@@ -229,21 +232,26 @@
     //update current plan and store on the disk
     self.tracker.currentMealPlan = [DiningTracker getMealPlanFromIndex:(int)row];
     
+    //custom meal plan support
     if([(NSNumber *)pickerView.selectedRows[0] intValue] == 9){
+        //create the alert
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Custom Meal Plan" message:@"Please enter the value of your meal plan" preferredStyle:UIAlertControllerStyleAlert];
+        //add the text field
         [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-            textField.placeholder = @"$";
             textField.keyboardType = UIKeyboardTypeDecimalPad;
             textField.delegate = self;
             textField.text = @"$";
         }];
+        //create the ok action
         UIAlertAction *action = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             NSArray *textfields = alert.textFields;
             UITextField *valueField = textfields[0];
             [self.tracker setCustomMealPlanValue:[[valueField.text stringByReplacingOccurrencesOfString:@"$" withString:@""] doubleValue]];
             [self updateLabels];
         }];
+        //add the action
         [alert addAction:action];
+        //show the dialogue
         [self presentViewController:alert animated:true completion:nil];
     }
     
@@ -309,6 +317,7 @@
 //called every time the user tries to edit the value remaining
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSString *newText;
+    //prevent pasting in a string with $ from breaking the app
     if([string containsString:@"$"]){
         [textField setText:@""];
         newText = string;

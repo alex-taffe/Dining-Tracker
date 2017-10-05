@@ -13,11 +13,11 @@
 @import MZFormSheetController;
 
 @interface CalendarViewController ()<FSCalendarDelegate, FSCalendarDataSource>
-@property (strong, nonatomic) IBOutlet FSCalendar *calendar;
-@property (strong, nonatomic) IBOutlet UIButton *doneButton;
-@property (strong, nonatomic) IBOutlet UIButton *cancelButton;
-@property (strong, nonatomic) IBOutlet UIView *headerBackgroundView;
-@property (strong, nonatomic) DiningTracker *tracker;
+@property (strong, nonatomic) IBOutlet FSCalendar *calendar; //the actual calendar view
+@property (strong, nonatomic) IBOutlet UIButton *doneButton; //this is self explanatory
+@property (strong, nonatomic) IBOutlet UIButton *cancelButton; //this is self explanatory
+@property (strong, nonatomic) IBOutlet UIView *headerBackgroundView; //this contains the title of the view
+@property (strong, nonatomic) DiningTracker *tracker; // the master tracker, set in the delegate, passed from the presenting view controller
 @end
 
 @implementation CalendarViewController
@@ -28,18 +28,22 @@
     // Do any additional setup after loading the view.
     self.calendar.delegate = self;
     self.calendar.dataSource = self;
+    //select all the dates that the user has already picked as days off
     for(NSDate *date in self.tracker.daysOff)
         [self.calendar selectDate:date];
     
+    //style the cancel button
     self.cancelButton.backgroundColor = [UIColor colorWithRed:0.93 green:0.94 blue:0.95 alpha:1.00];
     self.cancelButton.tintColor = [UIColor colorWithRed:0.24 green:0.28 blue:0.08 alpha:1.00];
     
+    //style the done button
     self.doneButton.backgroundColor = [UIColor colorWithRed:0.95 green:0.43 blue:0.13 alpha:1.00];
     self.doneButton.tintColor = UIColor.whiteColor;
     
-    
+    //style the header background
     self.headerBackgroundView.backgroundColor = [UIColor colorWithRed:0.95 green:0.43 blue:0.13 alpha:1.00];
     
+    //return the calendar to the current month
     [self.calendar setCurrentPage:[NSDate date]];
     
 }
@@ -50,11 +54,15 @@
 }
 
 
+//called when user clicks cancel
 - (IBAction)cancelButtonPressed:(id)sender {
+    //dismiss and do not update days off
     [self mz_dismissFormSheetControllerAnimated:true completionHandler:nil];
 }
 
+//called when the user presses done
 - (IBAction)doneButtonPressed:(id)sender {
+    //update the days off and dismiss
     self.tracker.daysOff = self.calendar.selectedDates;
     [self mz_dismissFormSheetControllerAnimated:true completionHandler:nil];
 }

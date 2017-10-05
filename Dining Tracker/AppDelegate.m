@@ -35,6 +35,7 @@
     NSDate *startDate = [formatter dateFromString:start];
     NSDate *semesterEndDate = [formatter dateFromString:semesterEnd];
     
+    //create our tracker
     self.tracker = [[DiningTracker alloc] initWithSemesterBeginDate:startDate endDate:semesterEndDate];
     
     //apple watch
