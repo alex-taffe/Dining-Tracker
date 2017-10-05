@@ -1,5 +1,7 @@
 # Dining-Tracker
-This app is designed to help track RIT dining balances to avoid students over/underspending. This app is NOT affiliated with RIT.
+Dining Tracker is the best way to track your RIT meal plan. Make sure you aren’t over or underspending and see where you are in the semester. Personalize the app with custom meal plans, the ability to select days that you will not be using your meal plan, and your individual dining balance.
+
+Dining Tracker is currently tracking Fall 2017 dining balances. Dining Tracker is NOT affiliated with RIT.
 
 Download at: https://itunes.apple.com/us/app/dining-tracker/id1283576250?ls=1&mt=8
 
