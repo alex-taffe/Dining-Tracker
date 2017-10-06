@@ -108,8 +108,6 @@
     [[MZFormSheetBackgroundWindow appearance] setAlpha:0.5];
     [[MZFormSheetBackgroundWindow appearance] setBlurRadius:0.5];
     [[MZFormSheetBackgroundWindow appearance] setBlurEffectStyle:UIBlurEffectStyleDark];
-    
-    
 }
 
 //this makes the app update when it appears
@@ -133,7 +131,14 @@
     //create the popup
     MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:calendar];
     formSheet.transitionStyle = MZFormSheetTransitionStyleSlideFromBottom;
-    formSheet.presentedFormSheetSize = CGSizeMake(300, 436);
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
+        formSheet.presentedFormSheetSize = CGSizeMake(500, 700);
+        formSheet.portraitTopInset = 30;
+        formSheet.landscapeTopInset = 20;
+    }
+    else{
+        formSheet.presentedFormSheetSize = CGSizeMake(300, 436);
+    }
     formSheet.cornerRadius = 6.0;
     
     //animate the status bar to the right color
