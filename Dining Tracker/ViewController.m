@@ -233,7 +233,7 @@
     self.tracker.currentMealPlan = [DiningTracker getMealPlanFromIndex:(int)row];
     
     //custom meal plan support
-    if([(NSNumber *)pickerView.selectedRows[0] intValue] == 9){
+    if(pickerView.selectedRows.count > 0 && [(NSNumber *)pickerView.selectedRows[0] intValue] == 9){
         //create the alert
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Custom Meal Plan" message:@"Please enter the value of your meal plan" preferredStyle:UIAlertControllerStyleAlert];
         //add the text field
