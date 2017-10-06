@@ -182,7 +182,7 @@
     }
     
     //update the label for the plan label but chop off the value
-    self.planLabel.text = [DiningTracker getTitleForMealPlan:self.tracker.currentMealPlan];
+    self.planLabel.text = self.tracker.currentMealPlanTitle;
     
     //update our circle graphs
     [self.semesterProgress setProgress:self.tracker.semesterPercent animated:true];

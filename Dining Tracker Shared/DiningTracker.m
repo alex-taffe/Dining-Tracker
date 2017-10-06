@@ -99,48 +99,6 @@
     }
 }
 
-///get a string representation of a passed in meal plan
-+(NSString *)getTitleForMealPlan:(MealPlanOption)plan{
-    switch (plan) {
-        case MealPlanOptionTiger20:
-            return @"Tiger 20";
-            break;
-        case MealPlanOptionTiger14:
-            return @"Tiger 14";
-            break;
-        case MealPlanOptionTiger10:
-            return @"Tiger 10";
-            break;
-        case MealPlanOptionTiger5:
-            return @"Tiger 5";
-            break;
-        case MealPlanOptionOrange:
-            return @"Orange";
-            break;
-        case MealPlanOptionGold:
-            return @"Gold";
-            break;
-        case MealPlanOptionSilver:
-            return @"Silver";
-            break;
-        case MealPlanOptionBronze:
-            return @"Bronze";
-            break;
-        case MealPlanOptionBrown:
-            return @"Brown";
-            break;
-        case MealPlanOptionCustom:
-            return @"Custom";
-            break;
-        case MealPlanOptionUnknown:
-            return @"Configuration Error";
-            break;
-        default:
-            return @"Configuration Error";
-            break;
-    }
-}
-
 #pragma mark: Class properties
 ///returns the list of all possible meal plans
 +(NSArray<NSString *> *)MealPlans{
@@ -235,6 +193,44 @@
 }
 
 #pragma mark: Instance properties
+///returns the title of the current meal plan
+-(NSString *)currentMealPlanTitle{
+    switch (self.currentMealPlan) {
+        case MealPlanOptionTiger20:
+            return @"Tiger 20";
+            break;
+        case MealPlanOptionTiger14:
+            return @"Tiger 14";
+            break;
+        case MealPlanOptionTiger10:
+            return @"Tiger 10";
+            break;
+        case MealPlanOptionTiger5:
+            return @"Tiger 5";
+            break;
+        case MealPlanOptionOrange:
+            return @"Orange";
+            break;
+        case MealPlanOptionGold:
+            return @"Gold";
+            break;
+        case MealPlanOptionSilver:
+            return @"Silver";
+            break;
+        case MealPlanOptionBronze:
+            return @"Bronze";
+            break;
+        case MealPlanOptionBrown:
+            return @"Brown";
+            break;
+        case MealPlanOptionCustom:
+            return [[NSString alloc] initWithFormat:@"Custom: $%0.2f", self.mealPlanValue];
+            break;
+        default:
+            return @"Configuration Error";
+            break;
+    }
+}
 
 ///returns a value between 0 and 1 representing how far into the semester we are
 -(double)semesterPercent{
