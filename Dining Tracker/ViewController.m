@@ -290,6 +290,10 @@
 #pragma mark - Text field
 //called when return is pressed on the keyboard (not currently used)
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    //make sure the text field isnt empty
+    if([self.moneyLeftField.text isEqualToString:@"$"])
+        self.moneyLeftField.text = @"$0.00";
+    
     //update stored value on disk
     self.tracker.diningBalance = [[textField.text stringByReplacingOccurrencesOfString:@"$" withString:@""] doubleValue]; //we have to remove the $ to get a clean double
                                                                                                                           //hide the keyboard
@@ -300,8 +304,11 @@
 }
 
 //called when the user taps outside the text field to dismiss the keyboard
--(void)dismissKeyboard
-{
+-(void)dismissKeyboard{
+    //make sure the text field isnt empty
+    if([self.moneyLeftField.text isEqualToString:@"$"])
+        self.moneyLeftField.text = @"$0.00";
+    
     //update stored value on disk
     self.tracker.diningBalance = [[self.moneyLeftField.text stringByReplacingOccurrencesOfString:@"$" withString:@""] doubleValue]; //we have to remove the $ to get a clean double
                                                                                                                                     //hide the keyboard
