@@ -59,6 +59,8 @@
     
     //we don't have copyrights yet, so hide the title label
     self.copyrightLabel.hidden = true;
+    
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
