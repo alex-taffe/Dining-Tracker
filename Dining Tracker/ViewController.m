@@ -131,6 +131,7 @@
     //create the popup
     MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:calendar];
     formSheet.transitionStyle = MZFormSheetTransitionStyleSlideFromBottom;
+    //make the popup bigger on the iPad
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
         formSheet.presentedFormSheetSize = CGSizeMake(500, 700);
         formSheet.portraitTopInset = 30;
@@ -170,11 +171,7 @@
         [self presentViewController:alert animated:true completion:nil];
     }
     
-    //make sure the user hasn't entered a value that is too high for custom meal plan
-    if(self.tracker.currentMealPlan == MealPlanOptionCustom){
-        
-    }
-    else if(self.tracker.diningBalance > self.tracker.mealPlanValue * 2){
+    if(self.tracker.diningBalance > self.tracker.mealPlanValue * 2){
         //reset all values
         self.moneyLeftField.text = [[NSString alloc] initWithFormat:@"$%0.2f", 2 * self.tracker.mealPlanValue];
         //alert the user

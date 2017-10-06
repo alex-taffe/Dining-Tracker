@@ -227,7 +227,11 @@
 
 ///sets the user's custom meal plan value
 -(void)setCustomMealPlanValue:(double)value{
-    [self.preferences setDouble:value forKey:@"customValue"];
+    if(value > 5000)
+        [self.preferences setDouble:5000.0 forKey:@"customValue"];
+    else
+        [self.preferences setDouble:value forKey:@"customValue"];
+    
 }
 
 #pragma mark: Instance properties
