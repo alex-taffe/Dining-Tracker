@@ -6,6 +6,8 @@ Dining Tracker is currently tracking Fall 2017 dining balances. Dining Tracker i
 Download at: https://itunes.apple.com/us/app/dining-tracker/id1283576250?ls=1&mt=8
 
 ## I want to help contribute
+![Imgur Image](https://imgur.com/kJZYVfp.jpg)
+
 Create a pull request and I will approve if the code is bug free and well written
 
 ## I found a bug and/or want a new feature.
