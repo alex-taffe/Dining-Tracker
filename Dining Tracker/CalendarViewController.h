@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface CalendarViewController : UIViewController
-
+@property (strong, nonatomic) UIView *statusBar;
 @end

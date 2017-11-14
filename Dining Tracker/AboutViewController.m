@@ -8,6 +8,7 @@
 
 @import SafariServices;
 #import "AboutViewController.h"
+#import "Constants.h"
 
 @interface AboutViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) UIColor *currentStatusBarColor;
@@ -25,16 +26,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //set the navigation bar styling
-    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.95 green:0.43 blue:0.13 alpha:1.00];
+    self.navigationController.navigationBar.barTintColor = ORANGE_COLOR;
     self.navigationController.navigationBar.tintColor = UIColor.whiteColor;
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: UIColor.whiteColor};
     
     //set the title label styling and add in the version info
     self.titleLabel.text = [[NSString alloc] initWithFormat:@"%@ %@(%@)", self.titleLabel.text, [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"], [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]];
-    self.titleLabel.textColor = [UIColor colorWithRed:0.95 green:0.43 blue:0.13 alpha:1.00];
+    self.titleLabel.textColor = ORANGE_COLOR;
     
     //style the github button color
-    self.githubLabel.tintColor = [UIColor colorWithRed:0.95 green:0.43 blue:0.13 alpha:1.00];
+    self.githubLabel.tintColor = ORANGE_COLOR;
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -59,6 +60,8 @@
     
     //we don't have copyrights yet, so hide the title label
     self.copyrightLabel.hidden = true;
+    
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
 }
 
 -(void)viewWillAppear:(BOOL)animated{

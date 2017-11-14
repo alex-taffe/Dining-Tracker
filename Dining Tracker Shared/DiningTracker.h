@@ -33,8 +33,6 @@ typedef NS_ENUM(NSInteger, MealPlanOption) {
 #pragma mark: Class methods
 ///converts an index into a mealplan
 +(MealPlanOption)getMealPlanFromIndex:(int)index;
-///converts a mealplan into an index
-+(NSString *)getTitleForMealPlan:(MealPlanOption)plan;
 ///get a string representation of a passed in meal plan
 +(int)indexOfMealPlan:(MealPlanOption)plan;
 
@@ -47,10 +45,12 @@ typedef NS_ENUM(NSInteger, MealPlanOption) {
 -(instancetype)initWithSemesterBeginDate:(NSDate *)semesterBeginDate endDate:(NSDate *)endDate;
 ///recalculate all of the dates in the object
 -(void)updateDates;
-///update the custom meal plan value
--(void)setCustomMealPlanValue:(double)value;
+
 
 #pragma mark: Instance properties
+
+///returns the title of the current meal plan
+@property (nonatomic, readonly, getter=currentMealPlanTitle) NSString *title;
 
 ///returns a value between 0 and 1 representing how far into the semester we are
 @property (nonatomic, readonly, getter=semesterPercent) double semesterPercent;
@@ -79,6 +79,8 @@ typedef NS_ENUM(NSInteger, MealPlanOption) {
 @property (nonatomic, readonly, getter=planPerDay) double planPerDay;
 ///the days off that the user has specified
 @property (strong, nonatomic, getter=getDaysOff, setter=setDaysOff:) NSArray <NSDate *> *daysOff;
+///Custom meal plan value
+@property (nonatomic, assign, setter=setCustomMealPlanValue:) double customMealPlanValue;
 
 ///to be used for the future apple watch app
 @property (strong, nonatomic) WCSession *watchSession;

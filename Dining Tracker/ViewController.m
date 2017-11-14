@@ -10,6 +10,7 @@
 #import "ViewController.h"
 #import "CalendarViewController.h"
 #import "AboutViewController.h"
+#import "Constants.h"
 
 @import CZPicker;
 @import CircleProgressBar;
@@ -22,6 +23,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *editButton; //edits the currently selected meal plan
 @property (strong, nonatomic) IBOutlet UIButton *daysOffButton; //edits the days off
 @property (strong, nonatomic) IBOutlet UIButton *aboutButton; //launches the about page
+@property (strong, nonatomic) IBOutlet UILabel *subHeader;
 @property (strong, nonatomic) IBOutlet UITextField *moneyLeftField; //the input field that allows the user to specify how much money they have left
 @property (strong, nonatomic) IBOutlet CircleProgressBar *semesterProgress; //graph representing the total progress of the semester
 @property (strong, nonatomic) IBOutlet CircleProgressBar *planProgress; //graph representing how much money the user has spent from their plan
@@ -32,6 +34,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *overSpentLabel; //label showing how much the user has over or underspent by
 @property (strong, nonatomic) IBOutlet UILabel *leftPerDayLabel; //label showing how much the user has left per day to stay on track
 @property (strong, nonatomic) IBOutlet UILabel *planPerDayLabel; //label showing how much the user's plan specifies per day
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *titleLabels;
 
 //other UI
 @property (strong, nonatomic) CZPickerView *picker; //picker for choosing meal plans
@@ -50,7 +53,17 @@
     self.tracker = ((AppDelegate *)[[UIApplication sharedApplication] delegate]).tracker;
     self.tracker.delegate = self;
     
+    //set sub head to the right color
+    self.subHeader.textColor = ORANGE_COLOR;
     
+    //change all colors of the title labels
+    for(UILabel *titleLabel in self.titleLabels)
+        titleLabel.textColor = ORANGE_COLOR;
+    
+    //color the circles
+    self.semesterProgress.progressBarProgressColor = ORANGE_COLOR;
+    self.planProgress.progressBarProgressColor = ORANGE_COLOR;
+        
     //recover the previous money left value
     self.moneyLeftField.text = [[NSString alloc] initWithFormat:@"$%0.2f", self.tracker.diningBalance];
     
@@ -61,8 +74,8 @@
                                          confirmButtonTitle:@"Ok"];
     
     //style the picker
-    self.picker.headerBackgroundColor = [UIColor colorWithRed:0.95 green:0.43 blue:0.13 alpha:1.00]; //make the header background orange
-    self.picker.confirmButtonBackgroundColor = [UIColor colorWithRed:0.95 green:0.43 blue:0.13 alpha:1.00]; //confirm button background color orange
+    self.picker.headerBackgroundColor = ORANGE_COLOR; //make the header background orange
+    self.picker.confirmButtonBackgroundColor = ORANGE_COLOR; //confirm button background color orange
     self.picker.needFooterView = true; //add the footer
     self.picker.delegate = self; //set the delegate
     self.picker.dataSource = self; //set the datasource
@@ -74,17 +87,17 @@
     
     
     //add some style to the edit button
-    self.editButton.backgroundColor = [UIColor colorWithRed:0.95 green:0.43 blue:0.13 alpha:1.00];
+    self.editButton.backgroundColor = ORANGE_COLOR;
     self.editButton.tintColor = UIColor.whiteColor;
     self.editButton.layer.cornerRadius = 5;
     
     //add some style to the days off button
-    self.daysOffButton.backgroundColor = [UIColor colorWithRed:0.95 green:0.43 blue:0.13 alpha:1.00];
+    self.daysOffButton.backgroundColor = ORANGE_COLOR;
     self.daysOffButton.tintColor = UIColor.whiteColor;
     self.daysOffButton.layer.cornerRadius = 5;
     
     //about button styling
-    self.aboutButton.tintColor = [UIColor colorWithRed:0.95 green:0.43 blue:0.13 alpha:1.00];
+    self.aboutButton.tintColor = ORANGE_COLOR;
     
     //set the money left delegate
     self.moneyLeftField.delegate = self;
@@ -108,8 +121,6 @@
     [[MZFormSheetBackgroundWindow appearance] setAlpha:0.5];
     [[MZFormSheetBackgroundWindow appearance] setBlurRadius:0.5];
     [[MZFormSheetBackgroundWindow appearance] setBlurEffectStyle:UIBlurEffectStyleDark];
-    
-    
 }
 
 //this makes the app update when it appears
@@ -129,11 +140,19 @@
 - (IBAction)editDaysOff:(id)sender {
     //get our view controller
     CalendarViewController *calendar = (CalendarViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"calendarController"];
-    
+    calendar.statusBar = self.statusBar;
     //create the popup
     MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:calendar];
     formSheet.transitionStyle = MZFormSheetTransitionStyleSlideFromBottom;
-    formSheet.presentedFormSheetSize = CGSizeMake(300, 436);
+    //make the popup bigger on the iPad
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
+        formSheet.presentedFormSheetSize = CGSizeMake(500, 700);
+        formSheet.portraitTopInset = 30;
+        formSheet.landscapeTopInset = 20;
+    }
+    else{
+        formSheet.presentedFormSheetSize = CGSizeMake(300, 436);
+    }
     formSheet.cornerRadius = 6.0;
     
     //animate the status bar to the right color
@@ -165,11 +184,7 @@
         [self presentViewController:alert animated:true completion:nil];
     }
     
-    //make sure the user hasn't entered a value that is too high for custom meal plan
-    if(self.tracker.currentMealPlan == MealPlanOptionCustom){
-        
-    }
-    else if(self.tracker.diningBalance > self.tracker.mealPlanValue * 2){
+    if(self.tracker.diningBalance > self.tracker.mealPlanValue * 2){
         //reset all values
         self.moneyLeftField.text = [[NSString alloc] initWithFormat:@"$%0.2f", 2 * self.tracker.mealPlanValue];
         //alert the user
@@ -180,7 +195,7 @@
     }
     
     //update the label for the plan label but chop off the value
-    self.planLabel.text = [DiningTracker getTitleForMealPlan:self.tracker.currentMealPlan];
+    self.planLabel.text = self.tracker.currentMealPlanTitle;
     
     //update our circle graphs
     [self.semesterProgress setProgress:self.tracker.semesterPercent animated:true];
@@ -233,7 +248,7 @@
     self.tracker.currentMealPlan = [DiningTracker getMealPlanFromIndex:(int)row];
     
     //custom meal plan support
-    if([(NSNumber *)pickerView.selectedRows[0] intValue] == 9){
+    if(pickerView.selectedRows.count > 0 && [(NSNumber *)pickerView.selectedRows[0] intValue] == 9){
         //create the alert
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Custom Meal Plan" message:@"Please enter the value of your meal plan" preferredStyle:UIAlertControllerStyleAlert];
         //add the text field
@@ -288,6 +303,10 @@
 #pragma mark - Text field
 //called when return is pressed on the keyboard (not currently used)
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    //make sure the text field isnt empty
+    if([self.moneyLeftField.text isEqualToString:@"$"])
+        self.moneyLeftField.text = @"$0.00";
+    
     //update stored value on disk
     self.tracker.diningBalance = [[textField.text stringByReplacingOccurrencesOfString:@"$" withString:@""] doubleValue]; //we have to remove the $ to get a clean double
                                                                                                                           //hide the keyboard
@@ -298,8 +317,11 @@
 }
 
 //called when the user taps outside the text field to dismiss the keyboard
--(void)dismissKeyboard
-{
+-(void)dismissKeyboard{
+    //make sure the text field isnt empty
+    if([self.moneyLeftField.text isEqualToString:@"$"])
+        self.moneyLeftField.text = @"$0.00";
+    
     //update stored value on disk
     self.tracker.diningBalance = [[self.moneyLeftField.text stringByReplacingOccurrencesOfString:@"$" withString:@""] doubleValue]; //we have to remove the $ to get a clean double
                                                                                                                                     //hide the keyboard
