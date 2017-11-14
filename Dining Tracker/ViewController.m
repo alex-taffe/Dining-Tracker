@@ -10,6 +10,7 @@
 #import "ViewController.h"
 #import "CalendarViewController.h"
 #import "AboutViewController.h"
+#import "Constants.h"
 
 @import CZPicker;
 @import CircleProgressBar;
@@ -53,15 +54,15 @@
     self.tracker.delegate = self;
     
     //set sub head to the right color
-    self.subHeader.textColor = [UIColor colorWithRed:0.95 green:0.43 blue:0.13 alpha:1.00];
+    self.subHeader.textColor = ORANGE_COLOR;
     
     //change all colors of the title labels
     for(UILabel *titleLabel in self.titleLabels)
-        titleLabel.textColor = [UIColor colorWithRed:0.95 green:0.43 blue:0.13 alpha:1.00];
+        titleLabel.textColor = ORANGE_COLOR;
     
     //color the circles
-    self.semesterProgress.progressBarProgressColor = [UIColor colorWithRed:0.95 green:0.43 blue:0.13 alpha:1.00];
-    self.planProgress.progressBarProgressColor = [UIColor colorWithRed:0.95 green:0.43 blue:0.13 alpha:1.00];
+    self.semesterProgress.progressBarProgressColor = ORANGE_COLOR;
+    self.planProgress.progressBarProgressColor = ORANGE_COLOR;
         
     //recover the previous money left value
     self.moneyLeftField.text = [[NSString alloc] initWithFormat:@"$%0.2f", self.tracker.diningBalance];
@@ -73,8 +74,8 @@
                                          confirmButtonTitle:@"Ok"];
     
     //style the picker
-    self.picker.headerBackgroundColor = [UIColor colorWithRed:0.95 green:0.43 blue:0.13 alpha:1.00]; //make the header background orange
-    self.picker.confirmButtonBackgroundColor = [UIColor colorWithRed:0.95 green:0.43 blue:0.13 alpha:1.00]; //confirm button background color orange
+    self.picker.headerBackgroundColor = ORANGE_COLOR; //make the header background orange
+    self.picker.confirmButtonBackgroundColor = ORANGE_COLOR; //confirm button background color orange
     self.picker.needFooterView = true; //add the footer
     self.picker.delegate = self; //set the delegate
     self.picker.dataSource = self; //set the datasource
@@ -86,17 +87,17 @@
     
     
     //add some style to the edit button
-    self.editButton.backgroundColor = [UIColor colorWithRed:0.95 green:0.43 blue:0.13 alpha:1.00];
+    self.editButton.backgroundColor = ORANGE_COLOR;
     self.editButton.tintColor = UIColor.whiteColor;
     self.editButton.layer.cornerRadius = 5;
     
     //add some style to the days off button
-    self.daysOffButton.backgroundColor = [UIColor colorWithRed:0.95 green:0.43 blue:0.13 alpha:1.00];
+    self.daysOffButton.backgroundColor = ORANGE_COLOR;
     self.daysOffButton.tintColor = UIColor.whiteColor;
     self.daysOffButton.layer.cornerRadius = 5;
     
     //about button styling
-    self.aboutButton.tintColor = [UIColor colorWithRed:0.95 green:0.43 blue:0.13 alpha:1.00];
+    self.aboutButton.tintColor = ORANGE_COLOR;
     
     //set the money left delegate
     self.moneyLeftField.delegate = self;

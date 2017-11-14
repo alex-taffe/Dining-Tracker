@@ -9,6 +9,8 @@
 #import "CalendarViewController.h"
 #import "DiningTracker.h"
 #import "AppDelegate.h"
+#import "Constants.h"
+
 @import FSCalendar;
 @import MZFormSheetController;
 
@@ -37,11 +39,11 @@
     self.cancelButton.tintColor = [UIColor colorWithRed:0.24 green:0.28 blue:0.08 alpha:1.00];
     
     //style the done button
-    self.doneButton.backgroundColor = [UIColor colorWithRed:0.95 green:0.43 blue:0.13 alpha:1.00];
+    self.doneButton.backgroundColor = ORANGE_COLOR;
     self.doneButton.tintColor = UIColor.whiteColor;
     
     //style the header background
-    self.headerBackgroundView.backgroundColor = [UIColor colorWithRed:0.95 green:0.43 blue:0.13 alpha:1.00];
+    self.headerBackgroundView.backgroundColor = ORANGE_COLOR;
     
     //return the calendar to the current month
     [self.calendar setCurrentPage:[NSDate date]];

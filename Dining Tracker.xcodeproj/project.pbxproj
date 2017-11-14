@@ -90,6 +90,7 @@
 		D690A2E27C176C0FCEE98D97 /* Pods-Dining Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dining Tracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Dining Tracker/Pods-Dining Tracker.debug.xcconfig"; sourceTree = "<group>"; };
 		FA6883DE1F733C2E000A26F6 /* PriceGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PriceGroup.h; sourceTree = "<group>"; };
 		FA6883DF1F733C2E000A26F6 /* PriceGroup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PriceGroup.m; sourceTree = "<group>"; };
+		FA9D211A1FBA79D5009EE576 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		FAA4C2A81F7D746100BCCB7F /* CalendarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
 		FAA4C2A91F7D746100BCCB7F /* CalendarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
 		FABA4D501F7EC9780086D830 /* AboutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
@@ -258,6 +259,7 @@
 		FAD028BA1F68400600CA0122 /* Dining Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				FA9D211A1FBA79D5009EE576 /* Constants.h */,
 				FAD028BE1F68400600CA0122 /* AppDelegate.h */,
 				FAD028BF1F68400600CA0122 /* AppDelegate.m */,
 				FAD028C11F68400600CA0122 /* ViewController.h */,
