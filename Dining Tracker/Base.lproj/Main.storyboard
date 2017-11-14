@@ -368,7 +368,15 @@ Spent</string>
                         <outlet property="semesterProgress" destination="fIW-tg-s3Q" id="mz1-h5-8PN"/>
                         <outlet property="shouldHaveLeftLabel" destination="p2U-KN-cSD" id="Eth-Tl-T4i"/>
                         <outlet property="shouldHaveSpentLabel" destination="fZ9-lj-9Qc" id="0nx-zN-x8K"/>
+                        <outlet property="subHeader" destination="xDY-Cr-JwB" id="SKY-nL-6df"/>
                         <outlet property="totalSpentLabel" destination="ec9-TR-Tcu" id="Z1p-X1-FXj"/>
+                        <outletCollection property="titleLabels" destination="K0b-iW-eua" id="I6t-rR-NcR"/>
+                        <outletCollection property="titleLabels" destination="cxk-da-ymh" id="kEZ-BT-2t5"/>
+                        <outletCollection property="titleLabels" destination="cxk-da-ymh" id="HhK-xw-npU"/>
+                        <outletCollection property="titleLabels" destination="Mfv-Er-Pbn" id="3eE-Gt-wbW"/>
+                        <outletCollection property="titleLabels" destination="J0Q-mq-pLP" id="rtF-8o-K2i"/>
+                        <outletCollection property="titleLabels" destination="tCf-Sn-C0p" id="NEd-Bg-3v3"/>
+                        <outletCollection property="titleLabels" destination="3wC-Vo-q7o" id="2Xs-l3-Nvh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -22,6 +22,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *editButton; //edits the currently selected meal plan
 @property (strong, nonatomic) IBOutlet UIButton *daysOffButton; //edits the days off
 @property (strong, nonatomic) IBOutlet UIButton *aboutButton; //launches the about page
+@property (strong, nonatomic) IBOutlet UILabel *subHeader;
 @property (strong, nonatomic) IBOutlet UITextField *moneyLeftField; //the input field that allows the user to specify how much money they have left
 @property (strong, nonatomic) IBOutlet CircleProgressBar *semesterProgress; //graph representing the total progress of the semester
 @property (strong, nonatomic) IBOutlet CircleProgressBar *planProgress; //graph representing how much money the user has spent from their plan
@@ -32,6 +33,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *overSpentLabel; //label showing how much the user has over or underspent by
 @property (strong, nonatomic) IBOutlet UILabel *leftPerDayLabel; //label showing how much the user has left per day to stay on track
 @property (strong, nonatomic) IBOutlet UILabel *planPerDayLabel; //label showing how much the user's plan specifies per day
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *titleLabels;
 
 //other UI
 @property (strong, nonatomic) CZPickerView *picker; //picker for choosing meal plans
@@ -50,7 +52,17 @@
     self.tracker = ((AppDelegate *)[[UIApplication sharedApplication] delegate]).tracker;
     self.tracker.delegate = self;
     
+    //set sub head to the right color
+    self.subHeader.textColor = [UIColor colorWithRed:0.95 green:0.43 blue:0.13 alpha:1.00];
     
+    //change all colors of the title labels
+    for(UILabel *titleLabel in self.titleLabels)
+        titleLabel.textColor = [UIColor colorWithRed:0.95 green:0.43 blue:0.13 alpha:1.00];
+    
+    //color the circles
+    self.semesterProgress.progressBarProgressColor = [UIColor colorWithRed:0.95 green:0.43 blue:0.13 alpha:1.00];
+    self.planProgress.progressBarProgressColor = [UIColor colorWithRed:0.95 green:0.43 blue:0.13 alpha:1.00];
+        
     //recover the previous money left value
     self.moneyLeftField.text = [[NSString alloc] initWithFormat:@"$%0.2f", self.tracker.diningBalance];
     
