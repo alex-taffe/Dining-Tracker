@@ -135,6 +135,10 @@
     if([self.preferences objectForKey:@"customValue"] == nil)
         [self.preferences setDouble:0 forKey:@"customValue"];
     
+    //make sure no moron has entered an insane value
+    if([self.preferences doubleForKey:@"customValue"] > 5000)
+        [self.preferences setDouble:5000 forKey:@"customValue"];
+    
     //see if the days off have been set yet. If not, init with default values
     if([self.preferences objectForKey:@"daysOff"] == nil){
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
