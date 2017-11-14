@@ -45,8 +45,7 @@ typedef NS_ENUM(NSInteger, MealPlanOption) {
 -(instancetype)initWithSemesterBeginDate:(NSDate *)semesterBeginDate endDate:(NSDate *)endDate;
 ///recalculate all of the dates in the object
 -(void)updateDates;
-///update the custom meal plan value
--(void)setCustomMealPlanValue:(double)value;
+
 
 #pragma mark: Instance properties
 
@@ -80,6 +79,8 @@ typedef NS_ENUM(NSInteger, MealPlanOption) {
 @property (nonatomic, readonly, getter=planPerDay) double planPerDay;
 ///the days off that the user has specified
 @property (strong, nonatomic, getter=getDaysOff, setter=setDaysOff:) NSArray <NSDate *> *daysOff;
+///Custom meal plan value
+@property (nonatomic, assign, setter=setCustomMealPlanValue:) double customMealPlanValue;
 
 ///to be used for the future apple watch app
 @property (strong, nonatomic) WCSession *watchSession;
