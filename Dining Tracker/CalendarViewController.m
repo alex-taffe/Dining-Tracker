@@ -59,12 +59,14 @@
 //called when user clicks cancel
 - (IBAction)cancelButtonPressed:(id)sender {
     //dismiss and do not update days off
+    self.statusBar.backgroundColor = UIColor.whiteColor;
     [self mz_dismissFormSheetControllerAnimated:true completionHandler:nil];
 }
 
 //called when the user presses done
 - (IBAction)doneButtonPressed:(id)sender {
     //update the days off and dismiss
+    self.statusBar.backgroundColor = UIColor.whiteColor;
     self.tracker.daysOff = self.calendar.selectedDates;
     [self mz_dismissFormSheetControllerAnimated:true completionHandler:nil];
 }

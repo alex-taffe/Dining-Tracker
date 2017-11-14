@@ -140,7 +140,7 @@
 - (IBAction)editDaysOff:(id)sender {
     //get our view controller
     CalendarViewController *calendar = (CalendarViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"calendarController"];
-    
+    calendar.statusBar = self.statusBar;
     //create the popup
     MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:calendar];
     formSheet.transitionStyle = MZFormSheetTransitionStyleSlideFromBottom;
