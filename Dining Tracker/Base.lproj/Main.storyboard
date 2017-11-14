@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -41,7 +41,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1CL-2d-7YI">
-                                                <rect key="frame" x="214" y="264.33333333333331" width="120" height="45.333333333333371"/>
+                                                <rect key="frame" x="214" y="264.33333333333331" width="120" height="45.333333333333314"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="decimalPad" returnKeyType="done" enablesReturnKeyAutomatically="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
@@ -56,7 +56,7 @@
                                                 </variation>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Money Left" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r2O-53-UJr">
-                                                <rect key="frame" x="16" y="274.33333333333331" width="108" height="25.333333333333371"/>
+                                                <rect key="frame" x="16" y="274.33333333333331" width="108" height="25.333333333333314"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="29"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -111,7 +111,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IIn-1q-XGV">
-                                                <rect key="frame" x="43.666666666666657" y="485.66666666666663" width="73" height="40.999999999999886"/>
+                                                <rect key="frame" x="43.666666666666657" y="485.66666666666669" width="73" height="41.000000000000057"/>
                                                 <string key="text">Semester
 Progress</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -119,7 +119,7 @@ Progress</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVp-1M-Qq5">
-                                                <rect key="frame" x="244" y="485.66666666666663" width="52" height="40.999999999999886"/>
+                                                <rect key="frame" x="244" y="485.66666666666669" width="52" height="41.000000000000057"/>
                                                 <string key="text">Money
 Spent</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -391,7 +391,7 @@ Spent</string>
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Days Off" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CbV-j5-7Ez">
-                                        <rect key="frame" x="172" y="12" width="70.333333333333343" height="21"/>
+                                        <rect key="frame" x="172" y="12" width="70.333333333333314" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -526,13 +526,13 @@ Spent</string>
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GitHub" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDj-DB-E1l">
-                                                <rect key="frame" x="6.0000000000000036" y="169.66666666666663" width="56.333333333333343" height="20.333333333333343"/>
+                                                <rect key="frame" x="6.0000000000000036" y="169.66666666666666" width="56.333333333333343" height="20.333333333333343"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oyg-OI-sUG">
-                                                <rect key="frame" x="109" y="107" width="196.33333333333331" height="40.666666666666657"/>
+                                                <rect key="frame" x="109.00000000000001" y="107" width="196.33333333333337" height="40.666666666666657"/>
                                                 <string key="text">Copyright Alex Taffe 2017
 All Rights Reserved</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -540,7 +540,7 @@ All Rights Reserved</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qnC-Uy-io6">
-                                                <rect key="frame" x="6" y="197" width="302" height="30"/>
+                                                <rect key="frame" x="16" y="197" width="302" height="30"/>
                                                 <state key="normal" title="https://github.com/alex-taffe/Dining-Tracker"/>
                                                 <connections>
                                                     <action selector="openGitHub:" destination="bhX-nt-yBv" eventType="touchUpInside" id="nW4-nF-I1l"/>
@@ -597,6 +597,7 @@ All Rights Reserved</string>
                                         <constraints>
                                             <constraint firstItem="gWn-nE-8n0" firstAttribute="centerX" secondItem="2kn-Uf-GDg" secondAttribute="centerX" id="1lc-mR-nT9"/>
                                             <constraint firstItem="dEj-DK-64p" firstAttribute="centerX" secondItem="2kn-Uf-GDg" secondAttribute="centerX" id="5ky-MN-TK0"/>
+                                            <constraint firstItem="75U-XP-tVf" firstAttribute="leading" secondItem="XDj-DB-E1l" secondAttribute="leading" id="7mV-zZ-p5l"/>
                                             <constraint firstItem="wWP-a9-mmr" firstAttribute="leading" secondItem="XDj-DB-E1l" secondAttribute="leading" id="8Da-ra-Ym5"/>
                                             <constraint firstItem="Oyg-OI-sUG" firstAttribute="centerX" secondItem="2kn-Uf-GDg" secondAttribute="centerX" id="DZQ-xs-kqE"/>
                                             <constraint firstItem="XDj-DB-E1l" firstAttribute="leading" secondItem="2kn-Uf-GDg" secondAttribute="leading" constant="6" id="EWz-OA-pTg"/>
@@ -605,11 +606,10 @@ All Rights Reserved</string>
                                             <constraint firstItem="qnC-Uy-io6" firstAttribute="top" secondItem="XDj-DB-E1l" secondAttribute="bottom" constant="8" id="OOw-CU-8Ew"/>
                                             <constraint firstItem="dEj-DK-64p" firstAttribute="top" secondItem="gWn-nE-8n0" secondAttribute="bottom" constant="15" id="RRK-GX-c4l"/>
                                             <constraint firstItem="gWn-nE-8n0" firstAttribute="top" secondItem="2kn-Uf-GDg" secondAttribute="top" constant="14" id="Uss-Rq-F6n"/>
-                                            <constraint firstItem="qnC-Uy-io6" firstAttribute="leading" secondItem="XDj-DB-E1l" secondAttribute="leading" id="c6U-48-IRF"/>
+                                            <constraint firstItem="qnC-Uy-io6" firstAttribute="leading" secondItem="XDj-DB-E1l" secondAttribute="leading" constant="10" id="c6U-48-IRF"/>
                                             <constraint firstItem="v1O-W2-c7W" firstAttribute="top" secondItem="75U-XP-tVf" secondAttribute="bottom" constant="8" id="cT5-qt-KRS"/>
                                             <constraint firstItem="XDj-DB-E1l" firstAttribute="top" secondItem="Oyg-OI-sUG" secondAttribute="bottom" constant="22" id="dcJ-Dq-AWk"/>
                                             <constraint firstItem="Oyg-OI-sUG" firstAttribute="top" secondItem="dEj-DK-64p" secondAttribute="bottom" constant="23" id="keZ-9B-szB"/>
-                                            <constraint firstItem="75U-XP-tVf" firstAttribute="leading" secondItem="qnC-Uy-io6" secondAttribute="leading" id="o93-4u-m4F"/>
                                             <constraint firstItem="wWP-a9-mmr" firstAttribute="top" secondItem="v1O-W2-c7W" secondAttribute="bottom" constant="8" id="ruV-uQ-XAt"/>
                                             <constraint firstAttribute="trailing" secondItem="v1O-W2-c7W" secondAttribute="trailing" id="vLh-NS-nhv"/>
                                             <constraint firstAttribute="bottom" secondItem="wWP-a9-mmr" secondAttribute="bottom" constant="20" id="vLj-3w-cfS"/>
